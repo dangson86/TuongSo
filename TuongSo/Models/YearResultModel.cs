@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace TuongSo.Models
 {
+
     public class YearResultModel
     {
+        [Key]
+        public Guid Id { get; set; }
         public string Year { get; set; }
         public string Age { get; set; }
         public int SumResult { get; set; }

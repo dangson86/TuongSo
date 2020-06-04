@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
+using TuongSo.Models;
 
 namespace TuongSo
 {
@@ -13,5 +15,10 @@ namespace TuongSo
     /// </summary>
     public partial class App : Application
     {
+        protected override async void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            await TuongSoContext.GetContext();
+        }
     }
 }
