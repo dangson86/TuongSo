@@ -54,6 +54,18 @@ namespace TuongSo.ViewControlers
             }
         }
 
+        private string _Summary;
+
+        public string Summary
+        {
+            get => _Summary;
+            set
+            {
+                _Summary = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<YearResultModel> YearResults { get; set; } = new ObservableCollection<YearResultModel>();
 
         public void CaculateResult()

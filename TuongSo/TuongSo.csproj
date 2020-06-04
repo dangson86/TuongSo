@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2020.2.513" />
+  </ItemGroup>
+
 </Project>
