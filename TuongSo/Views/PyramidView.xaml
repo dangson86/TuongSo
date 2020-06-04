@@ -12,9 +12,12 @@
         <localVC:PyramidVC></localVC:PyramidVC>
     </UserControl.DataContext>
     <UserControl.Resources>
-        <Style TargetType="Label">
+        <Style TargetType="Label" >
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="majorAgeLabel" BasedOn="{StaticResource {x:Type Label}}"   >
+            <Setter Property="Foreground" Value="#89BAE4"></Setter>
         </Style>
     </UserControl.Resources>
     <StackPanel  HorizontalAlignment="Stretch" >
@@ -24,18 +27,18 @@
             </Style>
         </StackPanel.Resources>
         <StackPanel Orientation="Horizontal" >
-            <Label Foreground="Red" Content="{Binding MajorYear4, TargetNullValue=52}"></Label>
+            <Label Style="{StaticResource majorAgeLabel}" Content="{Binding MajorYear4, TargetNullValue=52}"></Label>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
             <Label  Content="{Binding SumThirdLevel, TargetNullValue=9}"></Label>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
-            <Label Foreground="Red" Content="{Binding MajorYear3, TargetNullValue=43}"></Label>
+            <Label Style="{StaticResource majorAgeLabel}" Content="{Binding MajorYear3, TargetNullValue=43}"></Label>
         </StackPanel>
         <UniformGrid Width="150" Columns="3" >
-            <Label Foreground="Red" Content="{Binding MajorYear1, TargetNullValue=25}"></Label>
+            <Label Style="{StaticResource majorAgeLabel}"  Content="{Binding MajorYear1, TargetNullValue=25}"></Label>
             <Label Content="{Binding SumSecondLevel, TargetNullValue=4}"></Label>
-            <Label Foreground="Red" Content="{Binding MajorYear2, TargetNullValue=34}"></Label>
+            <Label Style="{StaticResource majorAgeLabel}" Content="{Binding MajorYear2, TargetNullValue=34}"></Label>
         </UniformGrid>
         <UniformGrid Width="150" Columns="2" >
             <Label Content="{Binding SumMonthDay, TargetNullValue=5}"></Label>

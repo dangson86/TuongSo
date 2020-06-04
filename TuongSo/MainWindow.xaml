@@ -12,7 +12,7 @@
     <Window.Resources>
         <localVC:MainWindowVC x:Key="localData"></localVC:MainWindowVC>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
-        <Style TargetType="Border"  >
+        <Style TargetType="Border">
             <Setter Property="BorderBrush" Value="#FF959595"></Setter>
             <Setter Property="BorderThickness" Value="1"></Setter>
         </Style>
@@ -72,9 +72,9 @@
                                     <Style TargetType="DataGridColumnHeader">
                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                                     </Style>
-                                </DataGridCheckBoxColumn.HeaderStyle>
+                                </DataGridCheckBoxColumn.HeaderStyle>                 
                             </DataGridCheckBoxColumn>
-                            <DataGridTemplateColumn Header="Chu thich" Width="*"      >
+                            <DataGridTemplateColumn Header="Chu thich" Width="*">
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
                                         <TextBox Text="{Binding Remark, UpdateSourceTrigger=PropertyChanged}"></TextBox>
@@ -82,28 +82,17 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsAMajorYear}" Value="True">
+                                        <Setter Property="Background" Value="#89BAE4"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
                     </DataGrid>
-                    <!--<ListView ItemsSource="{Binding YearResults}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <DockPanel>
-                                    <TextBox Width="300" DockPanel.Dock="Right"></TextBox>
-                                    <StackPanel MinWidth="350" Orientation="Horizontal">
-                                        <Label>Tuoi:</Label>
-                                        <Label  Content="{Binding Age}"></Label>
-                                        <Label>Nam:</Label>
-                                        <Label  Content="{Binding Year}"></Label>
-                                        <Label>Tong:</Label>
-                                        <Label Content="{Binding SumResult}"></Label>
-                                        <Label>Van mang:</Label>
-                                        <Label Content="{Binding YearStatus}"></Label>
-                                        <Label Foreground="Red" Visibility="{Binding Path=IsAMajorYear, Converter={StaticResource BoolToVis}}">P</Label>
-                                    </StackPanel>
-                                </DockPanel>
-                             
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>-->
+                   
                 </ScrollViewer>
             </DockPanel>
         </Border>
