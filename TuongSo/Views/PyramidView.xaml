@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="TuongSo.Views.PyramidView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TuongSo.Views"
+             xmlns:localVC="clr-namespace:TuongSo.ViewControlers"
+             mc:Ignorable="d"  
+             MaxHeight="200"
+             HorizontalAlignment="Stretch" Loaded="UserControl_Loaded" x:Name="PyramidViewSelf">
+    <UserControl.DataContext>
+        <localVC:PyramidVC></localVC:PyramidVC>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel  HorizontalAlignment="Stretch" >
+        <StackPanel.Resources>
+            <Style TargetType="StackPanel">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style>
+        </StackPanel.Resources>
+        <StackPanel Orientation="Horizontal" >
+            <Label Foreground="Red" Content="{Binding MajorYear4, TargetNullValue=52}"></Label>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" >
+            <Label  Content="{Binding SumThirdLevel, TargetNullValue=9}"></Label>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" >
+            <Label Foreground="Red" Content="{Binding MajorYear3, TargetNullValue=43}"></Label>
+        </StackPanel>
+        <UniformGrid Width="150" Columns="3" >
+            <Label Foreground="Red" Content="{Binding MajorYear1, TargetNullValue=25}"></Label>
+            <Label Content="{Binding SumSecondLevel, TargetNullValue=4}"></Label>
+            <Label Foreground="Red" Content="{Binding MajorYear2, TargetNullValue=34}"></Label>
+        </UniformGrid>
+        <UniformGrid Width="150" Columns="2" >
+            <Label Content="{Binding SumMonthDay, TargetNullValue=5}"></Label>
+            <Label Content="{Binding SumDayYear, TargetNullValue=8}"></Label>
+        </UniformGrid>
+        <UniformGrid Width="200" Columns="3">
+            <Label Content="{Binding BaseMonth, TargetNullValue=3}"></Label>
+            <Label Content="{Binding BaseDay, TargetNullValue=2}"></Label>
+            <Label Content="{Binding BaseYear, TargetNullValue=6 }"></Label>
+        </UniformGrid>
+    </StackPanel>
+
+</UserControl>

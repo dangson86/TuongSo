@@ -1,28 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
-using System.Text;
 using TuongSo.Models;
 
 namespace TuongSo.ViewControlers
 {
-    public abstract class BaseVC : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        // Create the OnPropertyChanged method to raise the event
-        // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-    }
-    public class MainWindowVC : BaseVC
+    public class MainWindowVC : TuongSoBaseVC
     {
         private string _Day = "02";
         public string Day
@@ -34,8 +17,6 @@ namespace TuongSo.ViewControlers
                 OnPropertyChanged();
             }
         }
-
-
 
         private string _Month = "03";
 
@@ -61,7 +42,20 @@ namespace TuongSo.ViewControlers
             }
         }
 
+        private bool _ShowPyramid = false;
+
+        public bool ShowPyramid
+        {
+            get => _ShowPyramid;
+            set
+            {
+                _ShowPyramid = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<YearResultModel> YearResults { get; set; } = new ObservableCollection<YearResultModel>();
+
         public void CaculateResult()
         {
             int yearInput = int.Parse(this.Year);
@@ -69,17 +63,7 @@ namespace TuongSo.ViewControlers
             YearResults.Clear();
 
             var scd = CalScd(Day, Month, Year);
-            var firstMajorYear = 0;
-            if (scd == 22)
-            {
-                firstMajorYear = 36 - 4;
-
-            }
-            else
-            {
-                firstMajorYear = 36 - scd;
-            }
-
+            var firstMajorYear = FirtMajorYear(Day, Month, Year);
             var secondMajorYear = firstMajorYear + 9;
             var thirdMajorYear = secondMajorYear + 9;
             var forthMajorYear = thirdMajorYear + 9;
@@ -114,14 +98,7 @@ namespace TuongSo.ViewControlers
                 }
             }
         }
-        private int ReducePY(string number)
-        {
-            if (number.Length > 1)
-            {
-                return ReducePY(SumStringValue(number).ToString());
-            }
-            return int.Parse(number);
-        }
+
 
         private YearStatus GetYearStatus(int py)
         {
@@ -139,43 +116,9 @@ namespace TuongSo.ViewControlers
             }
         }
 
-        private int CalScd(string day, string month, string year)
-        {
-            var acceptNumbers = new List<int>() { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 22 };
-
-            var daySum = SumStringValue(day);
-            var monthSum = SumStringValue(month);
-            var yearSum = this.SumStringValue(year);
-            var total = daySum + monthSum + yearSum;
-
-            if (!acceptNumbers.Contains(total))
-            {
-                total = SumStringValue(total.ToString());
-            }
 
 
 
-            return total;
-        }
-
-        private int SumStringValue(string input)
-        {
-            var value = 0;
-            if (!string.IsNullOrEmpty(input))
-            {
-                var inputNumer = int.Parse(input);
-
-                foreach (var c in input)
-                {
-                    if (int.TryParse(c.ToString(), out int number))
-                    {
-                        value += number;
-                    }
-                }
-            }
-
-            return value;
-        }
         public bool IsValid()
         {
             try

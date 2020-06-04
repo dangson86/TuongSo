@@ -13,7 +13,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
     <Window.DataContext>
-        <localVC:MainWindowVC ></localVC:MainWindowVC>
+        <localVC:MainWindowVC></localVC:MainWindowVC>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,9 +24,11 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0">
-            <!--<localView:UserInput Day="02" Month="03" Year="1986"  Background="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>-->
-            <localView:UserInput Day="{Binding Day, Mode=TwoWay}" Month="{Binding Month, Mode=TwoWay}" Year="{Binding Year, Mode=TwoWay}"  Background="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <localView:UserInput x:Name="userInput" Day="{Binding Path=Day, Mode=TwoWay}" Month="{Binding Path=Month, Mode=TwoWay}" Year="{Binding Path=Year, Mode=TwoWay}"  Background="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
             <Button Click="CalculateFortune">Tinh Tuoi</Button>
+            <localView:PyramidView x:Name="pyramidView"  Day="{Binding Path=Day, Mode=TwoWay,  ElementName=userInput}" Month="{Binding Path=Month, Mode=TwoWay, ElementName=userInput}" Year="{Binding Path=Year, Mode=TwoWay ,ElementName=userInput}"
+                                   Visibility="{Binding ShowPyramid, Converter={StaticResource BoolToVis}}">
+            </localView:PyramidView>
         </StackPanel>
 
         <Border BorderThickness="0" BorderBrush="AliceBlue"   Grid.Column="1">

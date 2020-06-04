@@ -32,10 +32,12 @@ namespace TuongSo
             if (Context.IsValid())
             {
                 Context.CaculateResult();
+                Context.ShowPyramid = true;
+                this.pyramidView.SetBaseValue();
             }
             else
             {
-                MessageBox.Show("Thong tin khong dung","Hu");
+                MessageBox.Show("Thong tin khong dung","Bao loi");
             }
         }
         private void ListViewScrollViewer_PreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
