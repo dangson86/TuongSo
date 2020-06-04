@@ -86,6 +86,7 @@ namespace TuongSo
                         pyWs.Cells[0, 1].SetValue("Nam");
                         pyWs.Cells[0, 2].SetValue("Tong");
                         pyWs.Cells[0, 3].SetValue("Van Mang");
+                        pyWs.Cells[0, 5].SetValue("Chu Thich");
                         foreach (var (item, row) in Context.YearResults.Select((e, i) => (e, i)))
                         {
                             pyWs.Cells[row + 1, 0].SetValue(item.Age);
@@ -100,6 +101,8 @@ namespace TuongSo
                                 cell.SetValue("P");
                                 cell.SetForeColor(ThemableColor.FromArgb(100, 255, 0, 0));
                             }
+
+                            pyWs.Cells[row + 1, 5].SetValue(item.Remark);
                         }
 
 

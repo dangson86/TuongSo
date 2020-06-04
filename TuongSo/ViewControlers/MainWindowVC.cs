@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using TuongSo.Models;
 
@@ -10,7 +9,7 @@ namespace TuongSo.ViewControlers
         private string _Day = "02";
         public string Day
         {
-            get { return _Day; }
+            get => _Day;
             set
             {
                 _Day = value;
@@ -22,7 +21,7 @@ namespace TuongSo.ViewControlers
 
         public string Month
         {
-            get { return _Month; }
+            get => _Month;
             set
             {
                 _Month = value;
@@ -33,7 +32,7 @@ namespace TuongSo.ViewControlers
 
         public string Year
         {
-            get { return _Year; }
+            get => _Year;
             set
             {
 
@@ -88,24 +87,24 @@ namespace TuongSo.ViewControlers
                 tempSum = SumStringValue(tempSum.ToString());
                 if (i == 0)
                 {
-                    YearResults.Add(new Models.YearResultModel()
+                    YearResults.Add(new YearResultModel()
                     {
                         Age = (i).ToString(),
                         Year = yearString,
                         SumResult = scd,
                         YearStatus = GetYearStatus(tempSum),
-                        IsAMajorYear = i == firstMajorYear || i == secondMajorYear || i == thirdMajorYear || i == forthMajorYear
+                        IsAMajorYear = i == firstMajorYear || i == secondMajorYear || i == thirdMajorYear || i == forthMajorYear,
                     });
                 }
                 else
                 {
-                    YearResults.Add(new Models.YearResultModel()
+                    YearResults.Add(new YearResultModel()
                     {
                         Age = (i).ToString(),
                         Year = yearString,
                         SumResult = ReducePY(tempSum.ToString()),
                         YearStatus = GetYearStatus(tempSum),
-                        IsAMajorYear = i == firstMajorYear || i == secondMajorYear || i == thirdMajorYear || i == forthMajorYear
+                        IsAMajorYear = i == firstMajorYear || i == secondMajorYear || i == thirdMajorYear || i == forthMajorYear,
                     });
                 }
             }

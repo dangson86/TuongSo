@@ -11,6 +11,7 @@ namespace TuongSo.Models
         public int SumResult { get; set; }
         public YearStatus YearStatus { get; set; }
         public bool IsAMajorYear { get; set; }
+        public string Remark { get; set; }
     }
 
     public enum YearStatus

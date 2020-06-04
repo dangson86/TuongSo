@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:localView="clr-namespace:TuongSo.Views"
         xmlns:localVC="clr-namespace:TuongSo.ViewControlers"
+        xmlns:localConverter="clr-namespace:TuongSo.ValueConverters"
         mc:Ignorable="d"
         MinWidth="500"
-        Title="Tuong So" Height="550" Width="600"  >
+        Title="Tuong So" Height="550" Width="900"  >
     <Window.Resources>
         <localVC:MainWindowVC x:Key="localData"></localVC:MainWindowVC>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -15,6 +16,8 @@
             <Setter Property="BorderBrush" Value="#FF959595"></Setter>
             <Setter Property="BorderThickness" Value="1"></Setter>
         </Style>
+
+        <localConverter:EnumToString x:Key="convertEnum"></localConverter:EnumToString>
     </Window.Resources>
     <Window.DataContext>
         <Binding Source="{StaticResource localData}"></Binding>
@@ -42,14 +45,13 @@
                 </Border>
             </StackPanel>
 
-            <Border  Margin="2">
+            <Border Margin="2" Visibility="{Binding ShowPyramid, Converter={StaticResource BoolToVis}, Source={StaticResource localData}}">
                 <DockPanel  MinHeight="200" Margin="0 10 0 0">
                     <Label DockPanel.Dock="Top">Chu Thich</Label>
-                    <Button  Width="100" Margin="0 10 0 10" DockPanel.Dock="Bottom" Click="Button_Click_Excel">excel</Button>
+                    <Button  Width="100" Margin="0 10 0 10" DockPanel.Dock="Bottom" Click="Button_Click_Excel">Luu Excel</Button>
                     <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                         <TextBox Text="{Binding Summary}" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
                     </ScrollViewer>
-                   
                 </DockPanel>
             </Border>
         </DockPanel>
@@ -57,24 +59,51 @@
         <Border BorderThickness="1,0,0,0" BorderBrush="AliceBlue" Margin="2"   Grid.Column="1">
             <DockPanel >
                 <Label DockPanel.Dock="Top" Background="Beige"  HorizontalContentAlignment="Center" HorizontalAlignment="Stretch">Nam Tuoi</Label>
-                <ScrollViewer Height="auto" Background="#FFDADADA" PreviewMouseWheel="ListViewScrollViewer_PreviewMouseWheel">
-                    <ListView ItemsSource="{Binding YearResults}">
+                <ScrollViewer Height="auto" Background="#FFDADADA" PreviewMouseWheel="ListViewScrollViewer_PreviewMouseWheel"
+                               Visibility="{Binding ShowPyramid, Converter={StaticResource BoolToVis}, Source={StaticResource localData}}">
+                    <DataGrid  ItemsSource="{Binding YearResults}" AutoGenerateColumns="False" GridLinesVisibility="None"  >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tuoi"  Binding="{Binding Age}" IsReadOnly="True" MinWidth="50"/>
+                            <DataGridTextColumn Header="Nam" Binding="{Binding Year}"  IsReadOnly="True" MinWidth="50" />
+                            <DataGridTextColumn Header="Tong" Binding="{Binding SumResult}"  IsReadOnly="True" MinWidth="50"/>
+                            <DataGridTextColumn Header="Van mang" Binding="{Binding YearStatus }"  IsReadOnly="True" MinWidth="50" />
+                            <DataGridCheckBoxColumn Header="P"  Binding="{Binding IsAMajorYear }"  IsReadOnly="True" MinWidth="50" >
+                                <DataGridCheckBoxColumn.HeaderStyle >
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    </Style>
+                                </DataGridCheckBoxColumn.HeaderStyle>
+                            </DataGridCheckBoxColumn>
+                            <DataGridTemplateColumn Header="Chu thich" Width="*"      >
+                                <DataGridTemplateColumn.CellTemplate >
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Remark, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--<ListView ItemsSource="{Binding YearResults}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label>Tuoi:</Label>
-                                    <Label  Content="{Binding Age}"></Label>
-                                    <Label>Nam:</Label>
-                                    <Label  Content="{Binding Year}"></Label>
-                                    <Label>Tong:</Label>
-                                    <Label Content="{Binding SumResult}"></Label>
-                                    <Label>Van mang:</Label>
-                                    <Label Content="{Binding YearStatus}"></Label>
-                                    <Label Foreground="Red" Visibility="{Binding Path=IsAMajorYear, Converter={StaticResource BoolToVis}}">P</Label>
-                                </StackPanel>
+                                <DockPanel>
+                                    <TextBox Width="300" DockPanel.Dock="Right"></TextBox>
+                                    <StackPanel MinWidth="350" Orientation="Horizontal">
+                                        <Label>Tuoi:</Label>
+                                        <Label  Content="{Binding Age}"></Label>
+                                        <Label>Nam:</Label>
+                                        <Label  Content="{Binding Year}"></Label>
+                                        <Label>Tong:</Label>
+                                        <Label Content="{Binding SumResult}"></Label>
+                                        <Label>Van mang:</Label>
+                                        <Label Content="{Binding YearStatus}"></Label>
+                                        <Label Foreground="Red" Visibility="{Binding Path=IsAMajorYear, Converter={StaticResource BoolToVis}}">P</Label>
+                                    </StackPanel>
+                                </DockPanel>
+                             
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
                 </ScrollViewer>
             </DockPanel>
         </Border>
