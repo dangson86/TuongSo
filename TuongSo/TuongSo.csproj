@@ -11,4 +11,8 @@
     <PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2020.2.513" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DomainContext\DomainContext.csproj" />
+  </ItemGroup>
+
 </Project>

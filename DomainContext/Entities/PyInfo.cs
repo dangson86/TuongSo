@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace TuongSo.Models
+namespace DomainContext.Entities
 {
-
-    public class YearResultModel
+    public class PyInfo
     {
         [Key]
         public Guid Id { get; set; }

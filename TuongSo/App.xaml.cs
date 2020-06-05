@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DomainContext;
 using System.Windows;
-using System.Windows.Navigation;
-using TuongSo.Models;
 
 namespace TuongSo
 {
@@ -18,7 +11,7 @@ namespace TuongSo
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            await TuongSoContext.GetContext();
+            await LocalDomainContext.GetContext();
         }
     }
 }

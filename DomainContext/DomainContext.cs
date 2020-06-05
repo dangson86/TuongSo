@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DomainContext.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 
-namespace TuongSo.Models
+namespace DomainContext
 {
-    public class TuongSoContext : DbContext
+    public class LocalDomainContext : DbContext
     {
-        public DbSet<YearResultModel> YearResults { get; set; }
+        public DbSet<PyInfo> YearResults { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -15,8 +17,8 @@ namespace TuongSo.Models
         }
 
 
-        private static readonly TuongSoContext _TuongSoContext = new TuongSoContext();
-        public static async Task<TuongSoContext> GetContext(string path = null)
+        private static readonly LocalDomainContext _TuongSoContext = new LocalDomainContext();
+        public static async Task<LocalDomainContext> GetContext(string path = null)
         {
             await _TuongSoContext.Database.EnsureCreatedAsync();
             return _TuongSoContext;

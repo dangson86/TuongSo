@@ -1,10 +1,10 @@
-﻿using System;
+﻿using DomainContext.Entities;
+using System;
 using System.Collections.ObjectModel;
-using TuongSo.Models;
 
-namespace TuongSo.ViewControlers
+namespace TuongSo.ViewModels
 {
-    public class MainWindowVC : TuongSoBaseVC
+    public class PyCalVM : PyCalBaseVM
     {
         private string _Day = "02";
         public string Day
@@ -65,7 +65,7 @@ namespace TuongSo.ViewControlers
             }
         }
 
-        public ObservableCollection<YearResultModel> YearResults { get; set; } = new ObservableCollection<YearResultModel>();
+        public ObservableCollection<PyInfo> YearResults { get; set; } = new ObservableCollection<PyInfo>();
 
         public void CaculateResult()
         {
@@ -87,7 +87,7 @@ namespace TuongSo.ViewControlers
                 tempSum = SumStringValue(tempSum.ToString());
                 if (i == 0)
                 {
-                    YearResults.Add(new YearResultModel()
+                    YearResults.Add(new PyInfo()
                     {
                         Age = (i).ToString(),
                         Year = yearString,
@@ -98,7 +98,7 @@ namespace TuongSo.ViewControlers
                 }
                 else
                 {
-                    YearResults.Add(new YearResultModel()
+                    YearResults.Add(new PyInfo()
                     {
                         Age = (i).ToString(),
                         Year = yearString,

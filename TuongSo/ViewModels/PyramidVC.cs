@@ -1,6 +1,6 @@
-﻿namespace TuongSo.ViewControlers
+﻿namespace TuongSo.ViewModels
 {
-    public class PyramidVC : TuongSoBaseVC
+    public class PyramidVC : PyCalBaseVM
     {
         private int? _Day;
         public int? BaseDay

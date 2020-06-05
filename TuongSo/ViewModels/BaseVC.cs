@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TuongSo.ViewControlers
+namespace TuongSo.ViewModels
 {
     public abstract class BaseVC : INotifyPropertyChanged
     {
@@ -17,7 +17,7 @@ namespace TuongSo.ViewControlers
         }
     }
 
-    public abstract class TuongSoBaseVC: BaseVC 
+    public abstract class PyCalBaseVM: BaseVC 
     {
         protected int ReducePY(int? number)
         {
