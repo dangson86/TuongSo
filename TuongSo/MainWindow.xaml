@@ -3,9 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:localView="clr-namespace:TuongSo.Views"
         xmlns:localVM="clr-namespace:TuongSo.ViewModels"
-        xmlns:localConverter="clr-namespace:TuongSo.ValueConverters"
         xmlns:navigators="clr-namespace:TuongSo.Navigators"
         mc:Ignorable="d"
         MinWidth="500"
@@ -32,10 +30,6 @@
                 <MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />
             </MenuItem>
         </Menu>
-        <!--<StackPanel  Orientation="Horizontal">
-            <Button Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:MainWindowVC}">View1</Button>
-            <Button Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:PyramidVC}">View2</Button>
-        </StackPanel>-->
-        <ContentControl  Content="{Binding CurrentViewModel}"></ContentControl>
+        <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>
     </DockPanel>
 </Window>

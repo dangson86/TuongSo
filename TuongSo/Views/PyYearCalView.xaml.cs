@@ -50,51 +50,7 @@ namespace TuongSo.Views
                 {
                     using (var stream = dialog.OpenFile())
                     {
-                        var prov = new XlsxFormatProvider();
-                        var wb = new Telerik.Windows.Documents.Spreadsheet.Model.Workbook();
-                        var mainWs = wb.Worksheets.Add();
-                        mainWs.Name = "Info";
-
-                        mainWs.Cells[1, 0].SetValue("Ngay");
-                        mainWs.Cells[1, 1].SetValue("Thang");
-                        mainWs.Cells[1, 2].SetValue("Nam");
-                        mainWs.Cells[2, 0].SetValue(Context.Day);
-                        mainWs.Cells[2, 1].SetValue(Context.Month);
-                        mainWs.Cells[2, 2].SetValue(Context.Year);
-
-                        mainWs.Cells[4, 0].SetValue("Chu thich");
-                        mainWs.Cells[5, 0].SetValue(Context.Summary);
-
-
-
-
-                        var pyWs = wb.Worksheets.Add();
-                        pyWs.Name = "PY";
-                        pyWs.Cells[0, 0].SetValue("Tuoi");
-                        pyWs.Cells[0, 1].SetValue("Nam");
-                        pyWs.Cells[0, 2].SetValue("Tong");
-                        pyWs.Cells[0, 3].SetValue("Van Mang");
-                        pyWs.Cells[0, 5].SetValue("Chu Thich");
-                        foreach (var (item, row) in Context.YearResults.Select((e, i) => (e, i)))
-                        {
-                            pyWs.Cells[row + 1, 0].SetValue(item.Age);
-                            pyWs.Cells[row + 1, 1].SetValue(item.Year);
-                            pyWs.Cells[row + 1, 2].SetValue(item.SumResult);
-                            pyWs.Cells[row + 1, 3].SetValue(item.YearStatus.ToString());
-
-                            if (item.IsAMajorYear)
-                            {
-                                var cell = pyWs.Cells[row + 1, 4];
-
-                                cell.SetValue("P");
-                                cell.SetForeColor(ThemableColor.FromArgb(100, 255, 0, 0));
-                            }
-
-                            pyWs.Cells[row + 1, 5].SetValue(item.Remark);
-                        }
-
-
-                        prov.Export(wb, stream);
+                        this.Context.ExportToExcel(stream);
                     }
                 }
                 catch (Exception)
@@ -105,5 +61,7 @@ namespace TuongSo.Views
             }
 
         }
+
+        
     }
 }

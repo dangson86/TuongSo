@@ -1,4 +1,7 @@
-﻿namespace TuongSo.ViewModels
+﻿using System.Collections.Generic;
+using System.Windows.Documents;
+
+namespace TuongSo.ViewModels
 {
     public class PyramidVC : PyCalBaseVM
     {
@@ -127,8 +130,8 @@
             this.BaseMonth = ReducePY(month);
             this.BaseYear = ReducePY(year);
 
-            this.SumDayYear = BaseDay + BaseYear;
-            this.SumMonthDay = BaseMonth + BaseDay;
+            this.SumDayYear = ReducePY(BaseDay + BaseYear);
+            this.SumMonthDay = ReducePY(BaseMonth + BaseDay);
 
             this.MajorYear1 = FirtMajorYear(day, month, year);
 
@@ -136,9 +139,25 @@
             this.MajorYear3 = MajorYear2 + 9;
             this.MajorYear4 = MajorYear3 + 9;
 
-            this.SumSecondLevel = ReducePY(ReducePY(SumMonthDay) + ReducePY(SumDayYear));
+            this.SumSecondLevel = CalSecondAndThridLevel(SumMonthDay ?? 0, SumDayYear ?? 0);
+            this.SumThirdLevel = CalSecondAndThridLevel(BaseMonth ?? 0, BaseYear ?? 0);
+        }
 
-            this.SumThirdLevel = ReducePY(BaseMonth + BaseYear);
+        private int CalSecondAndThridLevel(int left, int right)
+        {
+            int value;
+            var acceptNumbers = new List<int> { 10, 11, 22 };
+            var total = left + right;
+            if (acceptNumbers.Contains(total))
+            {
+                value = total;
+            }
+            else
+            {
+                value = ReducePY(total);
+            }
+
+            return value;
         }
     }
 }

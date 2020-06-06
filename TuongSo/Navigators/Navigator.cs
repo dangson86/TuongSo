@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GeneralDI;
+using Microsoft.Practices.Unity;
+using System;
 using System.ComponentModel;
 using TuongSo.Models;
 using TuongSo.ViewModels;
@@ -7,18 +9,20 @@ namespace TuongSo.Navigators
 {
     public class Navigator : INavigator, INotifyPropertyChanged
     {
-        BaseVC _ViewControler = new PyCalVM();
+        static BaseVC _ViewModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        private static readonly IUnityContainer _services = TuongSoServiceCollection.GetCollection();
         public BaseVC CurrentViewModel
         {
-            get => _ViewControler; set
+            get => _ViewModel;
+            set
             {
-                _ViewControler = value;
+                _ViewModel = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentViewModel)));
             }
         }
+        public IUnityContainer ServicesDI => _services;
 
         public System.Windows.Input.ICommand UpdateViewModel { get; }
         public Type CurrentViewModelType { get; internal set; }
@@ -26,6 +30,7 @@ namespace TuongSo.Navigators
         public Navigator()
         {
             UpdateViewModel = new UpdateViewControllerCommand(this);
+            UpdateViewModel.Execute(typeof(PyCalVM));
         }
     }
     public class UpdateViewControllerCommand : System.Windows.Input.ICommand
@@ -49,7 +54,7 @@ namespace TuongSo.Navigators
                 var baseVcType = typeof(BaseVC);
                 if (baseVcType.IsAssignableFrom(t))
                 {
-                    var vc = Activator.CreateInstance(t);
+                    var vc = this.nav.ServicesDI.Resolve(t);
                     this.nav.CurrentViewModel = vc as BaseVC;
                     this.nav.CurrentViewModelType = t;
                 }

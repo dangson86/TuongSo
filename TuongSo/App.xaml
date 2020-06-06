@@ -1,11 +1,12 @@
 ﻿<Application x:Class="TuongSo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TuongSo"
              xmlns:localVM="clr-namespace:TuongSo.ViewModels"
              xmlns:localView="clr-namespace:TuongSo.Views"
+             xmlns:Navigators="clr-namespace:TuongSo.Navigators"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Navigators:Navigator x:Key="navigator" ></Navigators:Navigator>
         <DataTemplate DataType="{x:Type localVM:PyCalVM}">
             <localView:PyYearCalView></localView:PyYearCalView>
         </DataTemplate>

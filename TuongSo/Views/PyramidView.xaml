@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TuongSo.Views"
              xmlns:localVC="clr-namespace:TuongSo.ViewModels"
+             xmlns:localConverters="clr-namespace:TuongSo.ValueConverters"
              mc:Ignorable="d"  
              MaxHeight="200"
              HorizontalAlignment="Stretch" Loaded="UserControl_Loaded" x:Name="PyramidViewSelf">
@@ -12,6 +12,8 @@
         <localVC:PyramidVC></localVC:PyramidVC>
     </UserControl.DataContext>
     <UserControl.Resources>
+        <localConverters:SpecialNumberToString x:Key="specialNumber"></localConverters:SpecialNumberToString>
+
         <Style TargetType="Label" >
             <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
@@ -30,14 +32,14 @@
             <Label Style="{StaticResource majorAgeLabel}" Content="{Binding MajorYear4, TargetNullValue=52}"></Label>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
-            <Label  Content="{Binding SumThirdLevel, TargetNullValue=9}"></Label>
+            <Label  Content="{Binding SumThirdLevel, TargetNullValue=9, Converter={StaticResource specialNumber}}"></Label>
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
             <Label Style="{StaticResource majorAgeLabel}" Content="{Binding MajorYear3, TargetNullValue=43}"></Label>
         </StackPanel>
         <UniformGrid Width="150" Columns="3" >
             <Label Style="{StaticResource majorAgeLabel}"  Content="{Binding MajorYear1, TargetNullValue=25}"></Label>
-            <Label Content="{Binding SumSecondLevel, TargetNullValue=4}"></Label>
+            <Label Content="{Binding SumSecondLevel, TargetNullValue=4,  Converter={StaticResource specialNumber}}"></Label>
             <Label Style="{StaticResource majorAgeLabel}" Content="{Binding MajorYear2, TargetNullValue=34}"></Label>
         </UniformGrid>
         <UniformGrid Width="150" Columns="2" >

@@ -17,6 +17,7 @@ namespace TuongSo.Views
             get => GetValue(UserInputDayProperty) as string;
             set => SetValue(UserInputDayProperty, value);
         }
+        
         public string Month
         {
             get => GetValue(UserInputMonthProperty) as string;
