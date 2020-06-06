@@ -97,7 +97,7 @@ namespace TuongSo.ViewModels
                 mainWs.Cells[2, 2].SetValue("Nam");
                 mainWs.Cells[3, 0].SetValue(Day);
                 mainWs.Cells[3, 1].SetValue(Month);
-                mainWs.Cells[4, 2].SetValue(Year);
+                mainWs.Cells[3, 2].SetValue(Year);
 
                 mainWs.Cells[6, 0].SetValue("Chu thich");
                 mainWs.Cells[7, 0].SetValue(Summary);
