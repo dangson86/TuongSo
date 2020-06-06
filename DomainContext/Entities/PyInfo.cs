@@ -1,11 +1,21 @@
-﻿using System;
+﻿using DomainContext.Generics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace DomainContext.Entities
 {
-    public class PyInfo
+    public class User : ObservableModel
+    {
+        public string UserName;
+        public string Day;
+        public string Month;
+        public string Year;
+        public string Summary;
+        public List<PyInfo> YearInfos = new List<PyInfo>();
+    }
+
+    public class PyInfo: ObservableModel
     {
         [Key]
         public Guid Id { get; set; }

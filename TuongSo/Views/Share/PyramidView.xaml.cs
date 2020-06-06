@@ -29,7 +29,7 @@ namespace TuongSo.Views
             set => SetValue(UserInputYearProperty, value);
         }
 
-        public PyramidVC Context => this.DataContext as PyramidVC;
+        public PyramidVM Context => this.DataContext as PyramidVM;
 
         public PyramidView()
         {

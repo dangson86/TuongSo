@@ -1,4 +1,5 @@
-﻿using GeneralDI;
+﻿using DomainContext.Generics;
+using GeneralDI;
 using Microsoft.Practices.Unity;
 using System;
 using System.ComponentModel;
@@ -9,11 +10,11 @@ namespace TuongSo.Navigators
 {
     public class Navigator : INavigator, INotifyPropertyChanged
     {
-        static BaseVC _ViewModel;
+        static BaseViewModel _ViewModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
         private static readonly IUnityContainer _services = TuongSoServiceCollection.GetCollection();
-        public BaseVC CurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get => _ViewModel;
             set
@@ -51,11 +52,11 @@ namespace TuongSo.Navigators
         {
             if (parameter is Type t)
             {
-                var baseVcType = typeof(BaseVC);
+                var baseVcType = typeof(BaseViewModel);
                 if (baseVcType.IsAssignableFrom(t))
                 {
                     var vc = this.nav.ServicesDI.Resolve(t);
-                    this.nav.CurrentViewModel = vc as BaseVC;
+                    this.nav.CurrentViewModel = vc as BaseViewModel;
                     this.nav.CurrentViewModelType = t;
                 }
             }

@@ -9,7 +9,7 @@
              MaxHeight="200"
              HorizontalAlignment="Stretch" Loaded="UserControl_Loaded" x:Name="PyramidViewSelf">
     <UserControl.DataContext>
-        <localVC:PyramidVC></localVC:PyramidVC>
+        <localVC:PyramidVM></localVC:PyramidVM>
     </UserControl.DataContext>
     <UserControl.Resources>
         <localConverters:SpecialNumberToString x:Key="specialNumber"></localConverters:SpecialNumberToString>

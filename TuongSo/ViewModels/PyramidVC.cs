@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Windows.Documents;
+﻿using DomainContext.Entities;
+using System.Collections.Generic;
 
 namespace TuongSo.ViewModels
 {
-    public class PyramidVC : PyCalBaseVM
+    public class PyramidVM : PyCalBaseVM
     {
         private int? _Day;
         public int? BaseDay

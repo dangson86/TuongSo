@@ -1,23 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using DomainContext.Generics;
+using System.Collections.Generic;
 
 namespace TuongSo.ViewModels
 {
-    public abstract class BaseVC : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-
-        // Create the OnPropertyChanged method to raise the event
-        // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-    }
-
-    public abstract class PyCalBaseVM: BaseVC 
+    public abstract class PyCalBaseVM : BaseViewModel
     {
         protected int ReducePY(int? number)
         {
@@ -34,7 +20,7 @@ namespace TuongSo.ViewModels
             {
                 value = result;
             }
-           
+
             return value;
         }
 
@@ -86,7 +72,18 @@ namespace TuongSo.ViewModels
             }
             return firstMajorYear;
         }
+    }
 
+
+    
+
+    public abstract class PyCalBaseVM<T, K> : PyCalBaseVM, IValueType<T> where K : PyCalBaseVM<T, K>, IValueType<T>, new() where T:new()
+    {
+        public T Model { get; set; }
+        public PyCalBaseVM()
+        {
+            Model = System.Activator.CreateInstance<T>();
+        }
     }
 
 }

@@ -19,11 +19,11 @@ namespace TuongSo.Views
         {
             InitializeComponent();
         }
-        private void CalculateFortune(object sender, RoutedEventArgs e)
+        private async void CalculateFortune(object sender, RoutedEventArgs e)
         {
             if (Context.IsValid())
             {
-                Context.CaculateResult();
+                await Context.CaculateResult();
                 Context.ShowPyramid = true;
                 this.pyramidView.SetBaseValue();
             }
@@ -39,7 +39,7 @@ namespace TuongSo.Views
             e.Handled = true;
         }
 
-        private void Button_Click_Excel(object sender, RoutedEventArgs e)
+        private async void Button_Click_Excel(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Filter = String.Format("Excel |*.xlsx");
@@ -50,7 +50,7 @@ namespace TuongSo.Views
                 {
                     using (var stream = dialog.OpenFile())
                     {
-                        this.Context.ExportToExcel(stream);
+                        await this.Context.ExportToExcel(stream);
                     }
                 }
                 catch (Exception)
@@ -62,6 +62,6 @@ namespace TuongSo.Views
 
         }
 
-        
+
     }
 }
