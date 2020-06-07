@@ -35,16 +35,24 @@ namespace TuongSo.Views.MainViews
         private void LoadCustomer_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
-            
+
             if (btn?.DataContext is Customer c)
             {
                 this.Context.SetSelectedCustomer(c.Id);
             }
         }
 
-        private void RemoveCustomer_Click(object sender, RoutedEventArgs e)
+        private async void RemoveCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            var btn = sender as Button;
+            if (btn?.DataContext is Customer c)
+            {
+                MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    await this.Context.DeleteCustomer(c.Id);
+                }
+            }
         }
     }
 }

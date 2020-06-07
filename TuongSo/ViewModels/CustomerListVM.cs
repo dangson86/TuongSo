@@ -28,6 +28,7 @@ namespace TuongSo.ViewModels
 
         public async Task GetCustomerList()
         {
+            this.Customers.Clear();
             var customerList = await domainContext.Customers.ToListAsync();
             this.Customers.AddRange(customerList);
         }
@@ -36,6 +37,17 @@ namespace TuongSo.ViewModels
             this.AppState.SelectedCustomerId = id;
 
             MainWindow.Nav?.NavigateToVM<PyCalVM>();
+        }
+
+        public async Task DeleteCustomer(Guid id)
+        {
+            var c = await domainContext.Customers.FirstOrDefaultAsync(e => e.Id == id);
+            if (c != null)
+            {
+                domainContext.Customers.Remove(c);
+                await domainContext.SaveChangesAsync();
+                await this.GetCustomerList();
+            }
         }
     }
 }
