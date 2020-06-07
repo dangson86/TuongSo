@@ -5,6 +5,7 @@ using DomainContext.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Telerik.Windows.Controls;
 
@@ -29,7 +30,7 @@ namespace TuongSo.ViewModels
         public async Task GetCustomerList()
         {
             this.Customers.Clear();
-            var customerList = await domainContext.Customers.ToListAsync();
+            var customerList = await domainContext.Customers.OrderBy(e=>e.UserName).ToListAsync();
             this.Customers.AddRange(customerList);
         }
         public void SetSelectedCustomer(Guid id)
