@@ -1,5 +1,6 @@
 ﻿using DomainContext;
 using DomainContext.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ using TuongSo.Models;
 
 namespace TuongSo.ViewModels
 {
-    public class PyCalVM : PyCalBaseVM<User, PyCalVM>
+    public class PyCalVM : PyCalBaseVM<Customer, PyCalVM>
     {
         private readonly LocalDomainContext DomainContext;
 
@@ -63,7 +64,7 @@ namespace TuongSo.ViewModels
             set
             {
                 _ = SetProperty(ref _YearResults, value);
-                Model.YearInfos = value.ToList();
+                //Model.YearInfos = value.ToList();
             }
         }
 
@@ -75,7 +76,13 @@ namespace TuongSo.ViewModels
             {
                 await CaculateResult();
             });
+
+            Model.Day = "02";
+            Model.Month = "03";
+            Model.Year = "1986";
+            Model.UserName = "son dang";
         }
+
         public PyCalVM(LocalDomainContext domainContext) : this()
         {
             this.DomainContext = domainContext;
@@ -195,7 +202,63 @@ namespace TuongSo.ViewModels
             }
         }
 
+        public async Task SaveCustomerInfo()
+        {
+            using (var tran = await DomainContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var customerInfo = await this.DomainContext.Customers.FirstOrDefaultAsync(e => e.Id == Model.Id).ConfigureAwait(false);
+                    var isNewCustomer = false;
+                    if (customerInfo == null)
+                    {
+                        customerInfo = new Customer()
+                        {
+                            Id = Guid.NewGuid(),
+                        };
+                        isNewCustomer = true;
+                    }
 
+                    customerInfo.Day = this.Day;
+                    customerInfo.Month = this.Month;
+                    customerInfo.Year = this.Year;
+                    customerInfo.Summary = this.Summary;
+
+                    if (isNewCustomer)
+                    {
+                        this.DomainContext.Customers.Add(customerInfo);
+                    }
+
+                    var yearInfos = await this.DomainContext.YearResults.Where(e => e.CustomerId == customerInfo.Id).ToListAsync().ConfigureAwait(false);
+                    this.DomainContext.YearResults.RemoveRange(yearInfos);
+
+                    foreach (var item in this.YearResults)
+                    {
+                        this.DomainContext.YearResults.Add(new PyInfo
+                        {
+                            Id = Guid.NewGuid(),
+                            Age = item.Age,
+                            CustomerId = customerInfo.Id,
+                            IsAMajorYear = item.IsAMajorYear,
+                            Remark = item.Remark,
+                            Year = item.Year,
+                            YearStatus = item.YearStatus,
+                            SumResult = item.SumResult,
+                        });
+                    }
+
+
+                    await this.DomainContext.SaveChangesAsync();
+
+                    Model.Id = customerInfo.Id;
+                }
+                catch (Exception ex)
+                {
+                    await tran.RollbackAsync();
+                    throw ex;
+                }
+            }
+        }
 
 
         public bool IsValid()

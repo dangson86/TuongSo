@@ -62,6 +62,18 @@ namespace TuongSo.Views
 
         }
 
-
+        private async void SaveCustomerInfo_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                await this.Context.SaveCustomerInfo();
+                MessageBox.Show("Saved");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Fail to save data", "Error");
+            }
+            
+        }
     }
 }
