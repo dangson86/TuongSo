@@ -23,5 +23,11 @@ namespace TuongSo
         {
             Nav = this.localNavigator;
         }
+
+        private void New_Py_Click(object sender, RoutedEventArgs e)
+        {
+            this.localNavigator.AppState.SelectedCustomerId = null;
+            this.localNavigator.NavigateToVM<TuongSo.ViewModels.PyCalVM>();
+        }
     }
 }

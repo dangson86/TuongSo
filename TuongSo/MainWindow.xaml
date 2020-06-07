@@ -17,12 +17,12 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <MenuItem Header="_New Py Cal" Click="New_Py_Click" />
                 <MenuItem Header="_Exit" Click="MenuItem_Exit_Click" />
             </MenuItem>
-            <MenuItem Header="_Views">
-                <MenuItem Header="PY Cal" Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:PyCalVM}" />
-                <MenuItem Header="Customers" Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:CustomerListVM}" />
-            </MenuItem>
+            <MenuItem Header="PY Cal" Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:PyCalVM}" ></MenuItem>
+            <MenuItem Header="Customers" Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:CustomerListVM}" />
+          
             <!--<MenuItem Header="_Tools">
                 <MenuItem Header="_Manage users">
                     <MenuItem.Icon>

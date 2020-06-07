@@ -1,4 +1,5 @@
 ﻿using DomainContext.Generics;
+using DomainContext.Interfaces;
 using GeneralDI;
 using Microsoft.Practices.Unity;
 using System;
@@ -24,6 +25,7 @@ namespace TuongSo.Navigators
             }
         }
         public IUnityContainer ServicesDI => _services;
+        public IAppState AppState => this.ServicesDI.Resolve<IAppState>();
 
         public System.Windows.Input.ICommand UpdateViewModel { get; }
         public Type CurrentViewModelType { get; internal set; }
