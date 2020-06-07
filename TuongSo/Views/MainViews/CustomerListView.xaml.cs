@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DomainContext.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -33,7 +34,12 @@ namespace TuongSo.Views.MainViews
 
         private void LoadCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            var btn = sender as Button;
+            
+            if (btn?.DataContext is Customer c)
+            {
+                this.Context.SetSelectedCustomer(c.Id);
+            }
         }
     }
 }

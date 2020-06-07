@@ -1,10 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Telerik.Documents.Common.Model;
-using Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
 using TuongSo.ViewModels;
 
 namespace TuongSo.Views.MainViews
@@ -73,7 +70,12 @@ namespace TuongSo.Views.MainViews
             {
                 MessageBox.Show("Fail to save data", "Error");
             }
-            
+
+        }
+
+        private async void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            await this.Context.GetSelectedCustomer();
         }
     }
 }

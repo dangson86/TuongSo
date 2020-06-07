@@ -6,6 +6,7 @@
              xmlns:localView="clr-namespace:TuongSo.Views"
              xmlns:localVM="clr-namespace:TuongSo.ViewModels"
              xmlns:localConverter="clr-namespace:TuongSo.ValueConverters"
+             Loaded="root_Loaded"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">

@@ -1,5 +1,6 @@
 ﻿using DomainContext;
 using DomainContext.Entities;
+using DomainContext.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,28 +21,28 @@ namespace TuongSo.ViewModels
         string _UserName;
         public string UserName
         {
-            get => Model.UserName;
+            get => _UserName;
             set => _ = SetProperty(ref _UserName, value);
         }
 
         string _Day;
         public string Day
         {
-            get => Model.Day;
+            get => _Day;
             set => _ = SetProperty(ref _Day, value);
         }
 
         string _Month;
         public string Month
         {
-            get => Model.Month;
+            get => _Month;
             set => _ = SetProperty(ref _Month, value);
         }
 
         string _Year;
         public string Year
         {
-            get => Model.Year;
+            get => _Year;
             set => _ = SetProperty(ref _Year, value);
         }
 
@@ -56,7 +57,7 @@ namespace TuongSo.ViewModels
         string _Summary;
         public string Summary
         {
-            get => Model.Summary;
+            get => _Summary;
             set => _ = SetProperty(ref _Summary, value);
         }
 
@@ -71,6 +72,7 @@ namespace TuongSo.ViewModels
         }
 
         public ICommand RunCalCommand { get; }
+        public IAppState AppState { get; }
 
         public PyCalVM()
         {
@@ -78,16 +80,12 @@ namespace TuongSo.ViewModels
             {
                 await CaculateResult();
             });
-
-            Model.Day = "02";
-            Model.Month = "03";
-            Model.Year = "1986";
-            Model.UserName = "son dang";
         }
 
-        public PyCalVM(LocalDomainContext domainContext) : this()
+        public PyCalVM(LocalDomainContext domainContext, IAppState appState) : this()
         {
             this.DomainContext = domainContext;
+            AppState = appState;
         }
 
         public Task ExportToExcel(Stream stream)
@@ -252,7 +250,7 @@ namespace TuongSo.ViewModels
 
                     await this.DomainContext.SaveChangesAsync();
                     await tran.CommitAsync();
-                    Model.Id = customerInfo.Id;
+                    Model = customerInfo;
                 }
                 catch (Exception ex)
                 {
@@ -262,6 +260,28 @@ namespace TuongSo.ViewModels
             }
         }
 
+        public async Task GetSelectedCustomer()
+        {
+            if (AppState?.SelectedCustomerId != null)
+            {
+                var c = await DomainContext.Customers.FirstOrDefaultAsync(e => e.Id == AppState.SelectedCustomerId);
+                if (c != null)
+                {
+                    var years = await DomainContext.YearResults.Where(e => e.CustomerId == c.Id).ToListAsync();
+
+                    this.UserName = c.UserName;
+                    this.Day = c.Day;
+                    this.Month = c.Month;
+                    this.Year = c.Year;
+                    this.Summary = c.Summary;
+
+                    this.ShowPyramid = true;
+                    this.YearResults.AddRange(years);
+
+                    this.Model = c;
+                }
+            }
+        }
 
         public bool IsValid()
         {

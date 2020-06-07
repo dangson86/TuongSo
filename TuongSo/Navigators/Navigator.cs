@@ -13,7 +13,7 @@ namespace TuongSo.Navigators
         static BaseViewModel _ViewModel;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private static readonly IUnityContainer _services = TuongSoServiceCollection.GetCollection();
+        private static readonly IUnityContainer _services = TuongSoServiceContainer.GetCollection();
         public BaseViewModel CurrentViewModel
         {
             get => _ViewModel;

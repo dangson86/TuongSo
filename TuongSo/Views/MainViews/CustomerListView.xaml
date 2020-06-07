@@ -23,7 +23,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Click="LoadCustomer_Click">Load</Button>
+                                <Button Click="LoadCustomer_Click" DataContext="{Binding}">Load</Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
