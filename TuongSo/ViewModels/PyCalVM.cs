@@ -17,29 +17,32 @@ namespace TuongSo.ViewModels
     {
         private readonly LocalDomainContext DomainContext;
 
+        string _UserName;
         public string UserName
         {
             get => Model.UserName;
-            set => _ = SetProperty(ref Model.UserName, value);
+            set => _ = SetProperty(ref _UserName, value);
         }
 
+        string _Day;
         public string Day
         {
             get => Model.Day;
-            set => _ = SetProperty(ref Model.Day, value);
+            set => _ = SetProperty(ref _Day, value);
         }
 
-
+        string _Month;
         public string Month
         {
             get => Model.Month;
-            set => _ = SetProperty(ref Model.Month, value);
+            set => _ = SetProperty(ref _Month, value);
         }
 
+        string _Year;
         public string Year
         {
             get => Model.Year;
-            set => _ = SetProperty(ref Model.Year, value);
+            set => _ = SetProperty(ref _Year, value);
         }
 
         private bool _ShowPyramid = false;
@@ -50,11 +53,11 @@ namespace TuongSo.ViewModels
             set => _ = SetProperty(ref _ShowPyramid, value);
         }
 
-
+        string _Summary;
         public string Summary
         {
             get => Model.Summary;
-            set => _ = SetProperty(ref Model.Summary, value);
+            set => _ = SetProperty(ref _Summary, value);
         }
 
         ObservableCollection<PyInfo> _YearResults = new ObservableCollection<PyInfo>();
@@ -64,7 +67,6 @@ namespace TuongSo.ViewModels
             set
             {
                 _ = SetProperty(ref _YearResults, value);
-                //Model.YearInfos = value.ToList();
             }
         }
 
@@ -218,7 +220,7 @@ namespace TuongSo.ViewModels
                         };
                         isNewCustomer = true;
                     }
-
+                    customerInfo.UserName = this.UserName;
                     customerInfo.Day = this.Day;
                     customerInfo.Month = this.Month;
                     customerInfo.Year = this.Year;
@@ -249,7 +251,7 @@ namespace TuongSo.ViewModels
 
 
                     await this.DomainContext.SaveChangesAsync();
-
+                    await tran.CommitAsync();
                     Model.Id = customerInfo.Id;
                 }
                 catch (Exception ex)

@@ -9,11 +9,11 @@ namespace DomainContext.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        public string UserName;
-        public string Day;
-        public string Month;
-        public string Year;
-        public string Summary;
-        
+        public string UserName { get; set; }
+        public string Day { get; set; }
+        public string Month { get; set; }
+        public string Year { get; set; }
+        public string Summary { get; set; }
+
     }
 }

@@ -7,7 +7,7 @@ using Telerik.Documents.Common.Model;
 using Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.Xlsx;
 using TuongSo.ViewModels;
 
-namespace TuongSo.Views
+namespace TuongSo.Views.MainViews
 {
     /// <summary>
     /// Interaction logic for PyYearCalView.xaml

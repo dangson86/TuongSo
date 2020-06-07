@@ -10,7 +10,7 @@
         Title="PY" Height="550" Width="900"  >
 
     <Window.DataContext>
-        <navigators:Navigator></navigators:Navigator>
+        <navigators:Navigator x:Name="ddd"></navigators:Navigator>
     </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -19,6 +19,7 @@
             </MenuItem>
             <MenuItem Header="_Views">
                 <MenuItem Header="PY Cal" Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:PyCalVM}" />
+                <MenuItem Header="Customers" Command="{Binding UpdateViewModel}" CommandParameter="{x:Type localVM:CustomerListVM}" />
             </MenuItem>
             <!--<MenuItem Header="_Tools">
                 <MenuItem Header="_Manage users">
