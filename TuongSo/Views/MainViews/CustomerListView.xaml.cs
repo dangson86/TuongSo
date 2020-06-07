@@ -41,5 +41,10 @@ namespace TuongSo.Views.MainViews
                 this.Context.SetSelectedCustomer(c.Id);
             }
         }
+
+        private void RemoveCustomer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

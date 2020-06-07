@@ -7,10 +7,12 @@
         xmlns:navigators="clr-namespace:TuongSo.Navigators"
         mc:Ignorable="d"
         MinWidth="500"
+        Name="root"
+        Loaded="root_Loaded"
         Title="PY" Height="550" Width="900"  >
 
     <Window.DataContext>
-        <navigators:Navigator x:Name="ddd"></navigators:Navigator>
+        <navigators:Navigator x:Name="localNavigator"></navigators:Navigator>
     </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">

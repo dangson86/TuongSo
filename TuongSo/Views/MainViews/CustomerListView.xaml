@@ -13,17 +13,23 @@
     </UserControl.DataContext>-->
     <Grid>
         <DataGrid ItemsSource="{Binding Customers}"  AutoGenerateColumns="False" GridLinesVisibility="None" CanUserAddRows="False">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Width" Value="100"></Setter>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"  Binding="{Binding  UserName}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Day" Binding="{Binding  Day}"  IsReadOnly="True" />
                 <DataGridTextColumn Header="Month" Binding="{Binding Month}"  IsReadOnly="True"/>
                 <DataGridTextColumn Header="Year" Binding="{Binding Year }"  IsReadOnly="True" />
-                <DataGridTextColumn Header="Summary" Binding="{Binding Summary }"  IsReadOnly="True" />
-                <DataGridTemplateColumn>
+                <DataGridTextColumn Header="Summary" Width="*" Binding="{Binding Summary }"  IsReadOnly="True" />
+                <DataGridTemplateColumn Header="Command" Width="auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Click="LoadCustomer_Click" DataContext="{Binding}">Load</Button>
+                                <Button Click="LoadCustomer_Click" Margin="10 0 0 0" DataContext="{Binding}">View</Button>
+                                <Button Click="RemoveCustomer_Click" Margin="10 0 10 0" DataContext="{Binding}">Remove</Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

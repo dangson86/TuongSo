@@ -34,6 +34,8 @@ namespace TuongSo.ViewModels
         public void SetSelectedCustomer(Guid id)
         {
             this.AppState.SelectedCustomerId = id;
+
+            MainWindow.Nav?.NavigateToVM<PyCalVM>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TuongSo.Navigators;
 
 namespace TuongSo
 {
@@ -7,7 +8,7 @@ namespace TuongSo
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public static Navigator Nav { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -16,6 +17,11 @@ namespace TuongSo
         private void MenuItem_Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            Nav = this.localNavigator;
         }
     }
 }

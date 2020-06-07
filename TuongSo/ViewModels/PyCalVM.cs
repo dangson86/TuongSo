@@ -267,7 +267,7 @@ namespace TuongSo.ViewModels
                 var c = await DomainContext.Customers.FirstOrDefaultAsync(e => e.Id == AppState.SelectedCustomerId);
                 if (c != null)
                 {
-                    var years = await DomainContext.YearResults.Where(e => e.CustomerId == c.Id).ToListAsync();
+                    var years = await DomainContext.YearResults.Where(e => e.CustomerId == c.Id).OrderBy(e=>e.Age).ToListAsync();
 
                     this.UserName = c.UserName;
                     this.Day = c.Day;

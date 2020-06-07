@@ -28,10 +28,25 @@ namespace TuongSo.Navigators
         public System.Windows.Input.ICommand UpdateViewModel { get; }
         public Type CurrentViewModelType { get; internal set; }
 
+        public void NavigateToVM<T>()
+        {
+            NavigateToVM(typeof(T));
+        }
+
+        public void NavigateToVM(Type type)
+        {
+            var baseVcType = typeof(BaseViewModel);
+            if (baseVcType.IsAssignableFrom(type))
+            {
+                var vc = this.ServicesDI.Resolve(type);
+                this.CurrentViewModel = vc as BaseViewModel;
+                this.CurrentViewModelType = type;
+            }
+        }
         public Navigator()
         {
             UpdateViewModel = new UpdateViewControllerCommand(this);
-            UpdateViewModel.Execute(typeof(PyCalVM));
+            UpdateViewModel.Execute(typeof(CustomerListVM));
         }
     }
     public class UpdateViewControllerCommand : System.Windows.Input.ICommand
@@ -52,13 +67,7 @@ namespace TuongSo.Navigators
         {
             if (parameter is Type t)
             {
-                var baseVcType = typeof(BaseViewModel);
-                if (baseVcType.IsAssignableFrom(t))
-                {
-                    var vc = this.nav.ServicesDI.Resolve(t);
-                    this.nav.CurrentViewModel = vc as BaseViewModel;
-                    this.nav.CurrentViewModelType = t;
-                }
+                this.nav.NavigateToVM(t);
             }
         }
     }
