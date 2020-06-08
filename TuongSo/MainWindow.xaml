@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:localVM="clr-namespace:TuongSo.ViewModels"
-        xmlns:navigators="clr-namespace:TuongSo.Navigators"
         mc:Ignorable="d"
         MinWidth="500"
         Name="root"

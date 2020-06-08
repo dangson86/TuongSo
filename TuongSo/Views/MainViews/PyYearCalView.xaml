@@ -9,7 +9,7 @@
              xmlns:localConverter="clr-namespace:TuongSo.ValueConverters"
              Loaded="root_Loaded"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="650" d:DesignWidth="800"
              x:Name="root">
 
     <UserControl.Resources>
@@ -33,7 +33,7 @@
             <StackPanel DockPanel.Dock="Top" Margin="2">
                 <localView:UserInput x:Name="userInput" NickName="{Binding Path=NickName, Mode=TwoWay}" CustomerName="{Binding Path=CustomerName, Mode=TwoWay}" Day="{Binding Path=Day, Mode=TwoWay}" Month="{Binding Path=Month, Mode=TwoWay}" Year="{Binding Path=Year, Mode=TwoWay}"  Background="AliceBlue" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
 
-                <Button Width="100" Margin="0 10 0 10" Click="CalculateFortune">Tinh Tuoi</Button>
+                <Button Width="100" Margin="0 10 0 10" Click="CalculateFortune">Calculate</Button>
                 <Border BorderThickness="1" Visibility="{Binding Path=ShowPyramid, Converter={StaticResource BoolToVis}}">
                     <localView2:BirthGridView  Background="AliceBlue" x:Name="birthGrid"
                                         Day="{Binding  Path=DataContext.Day ,ElementName=root}" 
@@ -54,7 +54,7 @@
 
             <Border Margin="2" Visibility="{Binding Path=ShowPyramid, Converter={StaticResource BoolToVis}}">
                 <DockPanel  MinHeight="200" Margin="0 10 0 0">
-                    <Label DockPanel.Dock="Top">Chu Thich</Label>
+                    <Label DockPanel.Dock="Top">Comments</Label>
                     <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="0 10 0 10" >
                         <StackPanel.Resources>
                             <Style TargetType="Button">
@@ -62,7 +62,7 @@
                                 <Setter Property="MinWidth" Value="50"></Setter>
                             </Style>
                         </StackPanel.Resources>
-                        <Button  Width="auto" Click="Button_Click_Excel">Luu Excel</Button>
+                        <Button  Width="auto" Click="Button_Click_Excel">Export Excel</Button>
                         <Button  Width="auto" Click="SaveCustomerInfo_Click">Save</Button>
                     </StackPanel>
 
@@ -76,15 +76,15 @@
 
         <Border BorderThickness="1,0,0,0" BorderBrush="AliceBlue" Margin="2"   Grid.Column="1">
             <DockPanel >
-                <Label DockPanel.Dock="Top" Background="Beige"  HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" >Nam Tuoi</Label>
+                <Label DockPanel.Dock="Top" Background="Beige"  HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" >PY</Label>
                 <ScrollViewer Height="auto" Background="#FFDADADA" PreviewMouseWheel="ListViewScrollViewer_PreviewMouseWheel"
                                Visibility="{Binding Path=ShowPyramid, Converter={StaticResource BoolToVis}}">
                     <DataGrid  ItemsSource="{Binding Path=YearResults}" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Tuoi"  Binding="{Binding Age}" IsReadOnly="True" MinWidth="50"/>
-                            <DataGridTextColumn Header="Nam" Binding="{Binding Year}"  IsReadOnly="True" MinWidth="50" />
-                            <DataGridTextColumn Header="Tong" Binding="{Binding SumResult}"  IsReadOnly="True" MinWidth="50"/>
-                            <DataGridTextColumn Header="Van mang" Binding="{Binding YearStatus }"  IsReadOnly="True" MinWidth="50" />
+                            <DataGridTextColumn Header="Age"  Binding="{Binding Age}" IsReadOnly="True" MinWidth="50"/>
+                            <DataGridTextColumn Header="Year" Binding="{Binding Year}"  IsReadOnly="True" MinWidth="50" />
+                            <DataGridTextColumn Header="Sum" Binding="{Binding SumResult}"  IsReadOnly="True" MinWidth="50"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding YearStatus }"  IsReadOnly="True" MinWidth="50" />
                             <DataGridCheckBoxColumn Header="P"  Binding="{Binding IsAMajorYear }"  IsReadOnly="True" MinWidth="50" >
                                 <DataGridCheckBoxColumn.HeaderStyle >
                                     <Style TargetType="DataGridColumnHeader">
@@ -92,7 +92,7 @@
                                     </Style>
                                 </DataGridCheckBoxColumn.HeaderStyle>
                             </DataGridCheckBoxColumn>
-                            <DataGridTemplateColumn Header="Chu thich" Width="*">
+                            <DataGridTemplateColumn Header="Comment" Width="*">
                                 <DataGridTemplateColumn.CellTemplate >
                                     <DataTemplate>
                                         <TextBox Text="{Binding Remark, UpdateSourceTrigger=PropertyChanged}"></TextBox>
