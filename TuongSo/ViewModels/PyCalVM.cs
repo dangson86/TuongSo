@@ -225,7 +225,7 @@ namespace TuongSo.ViewModels
                         };
                         isNewCustomer = true;
                     }
-                    customerInfo.UserName = this.CustomerName;
+                    customerInfo.CustomerName = this.CustomerName;
                     customerInfo.Day = this.Day;
                     customerInfo.Month = this.Month;
                     customerInfo.Year = this.Year;
@@ -276,7 +276,7 @@ namespace TuongSo.ViewModels
                 {
                     var years = await DomainContext.YearResults.Where(e => e.CustomerId == c.Id).OrderBy(e => e.Age).ToListAsync();
 
-                    this.CustomerName = c.UserName;
+                    this.CustomerName = c.CustomerName;
                     this.Day = c.Day;
                     this.Month = c.Month;
                     this.Year = c.Year;

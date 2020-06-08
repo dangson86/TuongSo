@@ -30,7 +30,7 @@ namespace TuongSo.ViewModels
         public async Task GetCustomerList()
         {
             this.Customers.Clear();
-            var customerList = await domainContext.Customers.OrderBy(e=>e.UserName).ToListAsync();
+            var customerList = await domainContext.Customers.OrderBy(e=>e.CustomerName).ToListAsync();
             this.Customers.AddRange(customerList);
         }
         public void SetSelectedCustomer(Guid id)

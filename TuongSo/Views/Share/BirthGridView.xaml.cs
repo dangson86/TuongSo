@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TuongSo.ViewModels;
 
 namespace TuongSo.Views.Share
@@ -23,6 +13,13 @@ namespace TuongSo.Views.Share
         public static readonly DependencyProperty UserInputMonthProperty = DependencyProperty.Register("Month", typeof(string), typeof(BirthGridView));
         public static readonly DependencyProperty UserInputYearProperty = DependencyProperty.Register("Year", typeof(string), typeof(BirthGridView));
         public static readonly DependencyProperty UserInputCustomerNameProperty = DependencyProperty.Register("CustomerName", typeof(string), typeof(BirthGridView));
+        public static readonly DependencyProperty NicknameProperty = DependencyProperty.Register("NickName", typeof(string), typeof(BirthGridView));
+
+        public string NickName
+        {
+            get { return (string)GetValue(NicknameProperty); }
+            set { SetValue(NicknameProperty, value); }
+        }
         public string Day
         {
             get => GetValue(UserInputDayProperty) as string;
@@ -60,7 +57,7 @@ namespace TuongSo.Views.Share
 
         public void SetBaseValue()
         {
-            this.Context.SetValue(CustomerName, this.Day, this.Month, this.Year);
+            this.Context.SetValue(this.CustomerName,this.NickName, this.Day, this.Month, this.Year);
         }
     }
 }

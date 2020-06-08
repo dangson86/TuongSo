@@ -100,76 +100,81 @@ namespace TuongSo.ViewModels
 
         private Customer Customer;
 
-        public void SetValue(string customerName, string day, string month, string year)
+        public void SetValue(string customerName, string nickName, string day, string month, string year)
         {
             this.Customer = new Customer()
             {
                 Day = day,
                 Month = month,
-                UserName = customerName,
+                CustomerName = customerName,
+                NickName = nickName,
                 Year = year
             };
             this.RefreshGrid();
         }
         public void RefreshGrid()
         {
-            var nameToNumber = NameToNumbers(this.Customer.UserName);
+            var nameToNumber = NameToNumbers(this.Customer.CustomerName);
             var nameNumber = OrderIntoGroup(nameToNumber.ToArray());
+            var nickNameToNumber = NameToNumbers(this.Customer.NickName);
+            var nickNameNumber = OrderIntoGroup(nickNameToNumber.ToArray());
+            var joinNameNumber = ReduceNumberSlotList(nameNumber, nickNameNumber);
+
 
             var groups = OrderIntoGroup(this.Customer.Day, this.Customer.Month, this.Customer.Year);
             var birthNumber = ReduceNumberSlotList(groups.ToArray());
 
             Slot1 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot1),
+                NameNumber = string.Join(',', joinNameNumber.Slot1),
                 BirthNumber = string.Join(',', birthNumber.Slot1),
             };
 
             Slot2 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot2),
+                NameNumber = string.Join(',', joinNameNumber.Slot2),
                 BirthNumber = string.Join(',', birthNumber.Slot2),
             };
 
             Slot3 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot3),
+                NameNumber = string.Join(',', joinNameNumber.Slot3),
                 BirthNumber = string.Join(',', birthNumber.Slot3),
             };
 
             Slot4 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot4),
+                NameNumber = string.Join(',', joinNameNumber.Slot4),
                 BirthNumber = string.Join(',', birthNumber.Slot4),
             };
 
             Slot5 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot5),
+                NameNumber = string.Join(',', joinNameNumber.Slot5),
                 BirthNumber = string.Join(',', birthNumber.Slot5),
             };
 
             Slot6 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot6),
+                NameNumber = string.Join(',', joinNameNumber.Slot6),
                 BirthNumber = string.Join(',', birthNumber.Slot6),
             };
 
             Slot7 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot7),
+                NameNumber = string.Join(',', joinNameNumber.Slot7),
                 BirthNumber = string.Join(',', birthNumber.Slot7),
             };
 
             Slot8 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot8),
+                NameNumber = string.Join(',', joinNameNumber.Slot8),
                 BirthNumber = string.Join(',', birthNumber.Slot8),
             };
 
             Slot9 = new SlotVM
             {
-                NameNumber = string.Join(',', nameNumber.Slot9),
+                NameNumber = string.Join(',', joinNameNumber.Slot9),
                 BirthNumber = string.Join(',', birthNumber.Slot9),
             };
         }
