@@ -12,6 +12,7 @@ namespace GeneralDI
         {
             container.RegisterInstance(LocalDomainContext.GetContext());
             container.RegisterType<IAppState, AppState>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IAppEvents, AppEvents>(new ContainerControlledLifetimeManager());
         }
 
         public static IUnityContainer GetCollection()

@@ -45,13 +45,15 @@ namespace TuongSo.Navigators
                 this.CurrentViewModelType = type;
             }
         }
-        public Navigator()
+        private Navigator()
         {
             UpdateViewModel = new UpdateViewControllerCommand(this);
             
             UpdateViewModel.Execute(typeof(PyCalVM));
             //UpdateViewModel.Execute(typeof(CustomerListVM));
         }
+
+        public static Navigator Current { get; } = new Navigator();
     }
     public class UpdateViewControllerCommand : System.Windows.Input.ICommand
     {

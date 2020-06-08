@@ -8,4 +8,6 @@ namespace DomainContext.Interfaces
     {
         Guid? SelectedCustomerId { get; set; }
     }
+    public interface IAppEvents
+    { }
 }

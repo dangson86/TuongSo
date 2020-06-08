@@ -9,4 +9,7 @@ namespace DomainContext.Entities
     {
         public Guid? SelectedCustomerId { get; set; }
     }
+
+    public class AppEvents : IAppEvents
+    { }
 }
