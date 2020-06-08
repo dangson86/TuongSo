@@ -18,35 +18,35 @@ namespace TuongSo.ViewModels
     {
         private readonly LocalDomainContext DomainContext;
 
-        string _NickName = "Cop";
+        string _NickName;
         public string NickName
         {
             get => _NickName;
             set => _ = SetProperty(ref _NickName, value);
         }
 
-        string _CustomerName = "Son";
+        string _CustomerName;
         public string CustomerName
         {
             get => _CustomerName;
             set => _ = SetProperty(ref _CustomerName, value);
         }
 
-        string _Day = "02";
+        string _Day;
         public string Day
         {
             get => _Day;
             set => _ = SetProperty(ref _Day, value);
         }
 
-        string _Month = "03";
+        string _Month;
         public string Month
         {
             get => _Month;
             set => _ = SetProperty(ref _Month, value);
         }
 
-        string _Year = "1986";
+        string _Year;
         public string Year
         {
             get => _Year;
@@ -230,6 +230,7 @@ namespace TuongSo.ViewModels
                     customerInfo.Month = this.Month;
                     customerInfo.Year = this.Year;
                     customerInfo.Summary = this.Summary;
+                    customerInfo.NickName = this.NickName;
 
                     if (isNewCustomer)
                     {
@@ -281,7 +282,7 @@ namespace TuongSo.ViewModels
                     this.Month = c.Month;
                     this.Year = c.Year;
                     this.Summary = c.Summary;
-
+                    this.NickName = c.NickName;
                     this.ShowPyramid = true;
                     this.YearResults.AddRange(years);
 
