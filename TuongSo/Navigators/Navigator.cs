@@ -30,7 +30,7 @@ namespace TuongSo.Navigators
         public System.Windows.Input.ICommand UpdateViewModel { get; }
         public Type CurrentViewModelType { get; internal set; }
 
-        public void NavigateToVM<T>()
+        public void NavigateToVM<T>() where T : BaseViewModel
         {
             NavigateToVM(typeof(T));
         }
@@ -45,8 +45,10 @@ namespace TuongSo.Navigators
                 this.CurrentViewModelType = type;
             }
         }
+
         private Navigator()
         {
+            this.ServicesDI.RegisterInstance<INavigator>(this);
             UpdateViewModel = new UpdateViewControllerCommand(this);
             
             UpdateViewModel.Execute(typeof(PyCalVM));

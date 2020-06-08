@@ -8,5 +8,6 @@ namespace TuongSo.Models
     {
         BaseViewModel CurrentViewModel { get; }
         ICommand UpdateViewModel { get; }
+        void NavigateToVM<T>() where T : BaseViewModel;
     }
 }

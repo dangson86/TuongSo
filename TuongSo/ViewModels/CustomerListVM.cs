@@ -8,12 +8,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Telerik.Windows.Controls;
+using TuongSo.Models;
 
 namespace TuongSo.ViewModels
 {
     public class CustomerListVM : BaseViewModel
     {
         private readonly LocalDomainContext domainContext;
+        private readonly INavigator nav;
+
         public ObservableCollection<Customer> Customers { get; private set; } = new ObservableCollection<Customer>();
         public IAppState AppState { get; }
 
@@ -21,23 +24,23 @@ namespace TuongSo.ViewModels
         {
 
         }
-        public CustomerListVM(LocalDomainContext domainContext, IAppState appState)
+        public CustomerListVM(LocalDomainContext domainContext, IAppState appState, INavigator nav)
         {
             this.domainContext = domainContext;
             AppState = appState;
+            this.nav = nav;
         }
 
         public async Task GetCustomerList()
         {
             this.Customers.Clear();
-            var customerList = await domainContext.Customers.OrderBy(e=>e.CustomerName).ToListAsync();
+            var customerList = await domainContext.Customers.OrderBy(e => e.CustomerName).ToListAsync();
             this.Customers.AddRange(customerList);
         }
         public void SetSelectedCustomer(Guid id)
         {
             this.AppState.SelectedCustomerId = id;
-
-            MainWindow.Nav?.NavigateToVM<PyCalVM>();
+            this.nav.NavigateToVM<PyCalVM>();
         }
 
         public async Task DeleteCustomer(Guid id)

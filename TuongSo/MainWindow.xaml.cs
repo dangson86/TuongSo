@@ -8,7 +8,6 @@ namespace TuongSo
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Navigator Nav => Navigator.Current;
         public MainWindow()
         {
             InitializeComponent();
