@@ -23,6 +23,8 @@ namespace TuongSo.Views.MainViews
                 await Context.CaculateResult();
                 Context.ShowPyramid = true;
                 this.pyramidView.SetBaseValue();
+
+                this.birthGrid.SetBaseValue();
             }
             else
             {

@@ -1,10 +1,40 @@
 ﻿using DomainContext.Generics;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace TuongSo.ViewModels
 {
     public abstract class PyCalBaseVM : BaseViewModel
     {
+        protected List<int> NameToNumbers(string inputName)
+        {
+            var dic = new Dictionary<int, List<string>>();
+            dic[1] = new List<string> { "a", "j", "s" };
+            dic[2] = new List<string> { "b", "k", "t" };
+            dic[3] = new List<string> { "c", "l", "u" };
+            dic[4] = new List<string> { "d", "m", "v" };
+            dic[5] = new List<string> { "e", "n", "w" };
+            dic[6] = new List<string> { "f", "o", "x" };
+            dic[7] = new List<string> { "g", "p", "y" };
+            dic[8] = new List<string> { "h", "q", "z" };
+            dic[9] = new List<string> { "i", "r" };
+            var numbers = new List<int>();
+            if (!string.IsNullOrEmpty(inputName))
+            {
+                foreach (var c in inputName)
+                {
+                    foreach (var list in dic)
+                    {
+                        if (list.Value.Contains(c.ToString(), StringComparer.OrdinalIgnoreCase))
+                        {
+                            numbers.Add(list.Key);
+                        }
+                    }
+                }
+            }
+            
+            return numbers;
+        }
         protected int ReducePY(int? number)
         {
             return ReducePY(number?.ToString());
@@ -75,9 +105,9 @@ namespace TuongSo.ViewModels
     }
 
 
-    
 
-    public abstract class PyCalBaseVM<T, K> : PyCalBaseVM, IValueType<T> where K : PyCalBaseVM<T, K>, IValueType<T>, new() where T:new()
+
+    public abstract class PyCalBaseVM<T, K> : PyCalBaseVM, IValueType<T> where K : PyCalBaseVM<T, K>, IValueType<T>, new() where T : new()
     {
         public T Model { get; set; }
         public PyCalBaseVM()

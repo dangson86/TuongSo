@@ -22,14 +22,21 @@ namespace TuongSo.Views
         public static readonly DependencyProperty UserInputMonthProperty = DependencyProperty.Register("Month", typeof(string), typeof(UserInput));
         public static readonly DependencyProperty UserInputYearProperty = DependencyProperty.Register("Year", typeof(string), typeof(UserInput));
 
-        public static readonly DependencyProperty UserNameProperty = DependencyProperty.Register("UserName", typeof(string), typeof(UserInput));
+        public static readonly DependencyProperty CustomerNameProperty = DependencyProperty.Register("CustomerName", typeof(string), typeof(UserInput));
+        public static readonly DependencyProperty NicknameProperty = DependencyProperty.Register("NickName", typeof(string), typeof(UserInput));
 
 
 
-        public string UserName
+        public string NickName
         {
-            get => (string)GetValue(UserNameProperty);
-            set => SetValue(UserNameProperty, value);
+            get { return (string)GetValue(NicknameProperty); }
+            set { SetValue(NicknameProperty, value); }
+        }
+
+        public string CustomerName
+        {
+            get => (string)GetValue(CustomerNameProperty);
+            set => SetValue(CustomerNameProperty, value);
         }
 
         public string Day

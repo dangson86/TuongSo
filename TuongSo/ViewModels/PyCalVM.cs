@@ -18,28 +18,35 @@ namespace TuongSo.ViewModels
     {
         private readonly LocalDomainContext DomainContext;
 
-        string _UserName;
-        public string UserName
+        string _NickName = "Cop";
+        public string NickName
         {
-            get => _UserName;
-            set => _ = SetProperty(ref _UserName, value);
+            get => _NickName;
+            set => _ = SetProperty(ref _NickName, value);
         }
 
-        string _Day;
+        string _CustomerName = "Son";
+        public string CustomerName
+        {
+            get => _CustomerName;
+            set => _ = SetProperty(ref _CustomerName, value);
+        }
+
+        string _Day = "02";
         public string Day
         {
             get => _Day;
             set => _ = SetProperty(ref _Day, value);
         }
 
-        string _Month;
+        string _Month = "03";
         public string Month
         {
             get => _Month;
             set => _ = SetProperty(ref _Month, value);
         }
 
-        string _Year;
+        string _Year = "1986";
         public string Year
         {
             get => _Year;
@@ -96,7 +103,7 @@ namespace TuongSo.ViewModels
                 var wb = new Telerik.Windows.Documents.Spreadsheet.Model.Workbook();
                 var mainWs = wb.Worksheets.Add();
                 mainWs.Name = "Info";
-                mainWs.Cells[1, 0].SetValue(UserName);
+                mainWs.Cells[1, 0].SetValue(CustomerName);
 
 
                 mainWs.Cells[2, 0].SetValue("Ngay");
@@ -218,7 +225,7 @@ namespace TuongSo.ViewModels
                         };
                         isNewCustomer = true;
                     }
-                    customerInfo.UserName = this.UserName;
+                    customerInfo.UserName = this.CustomerName;
                     customerInfo.Day = this.Day;
                     customerInfo.Month = this.Month;
                     customerInfo.Year = this.Year;
@@ -267,9 +274,9 @@ namespace TuongSo.ViewModels
                 var c = await DomainContext.Customers.FirstOrDefaultAsync(e => e.Id == AppState.SelectedCustomerId);
                 if (c != null)
                 {
-                    var years = await DomainContext.YearResults.Where(e => e.CustomerId == c.Id).OrderBy(e=>e.Age).ToListAsync();
+                    var years = await DomainContext.YearResults.Where(e => e.CustomerId == c.Id).OrderBy(e => e.Age).ToListAsync();
 
-                    this.UserName = c.UserName;
+                    this.CustomerName = c.UserName;
                     this.Day = c.Day;
                     this.Month = c.Month;
                     this.Year = c.Year;

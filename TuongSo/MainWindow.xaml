@@ -9,7 +9,7 @@
         MinWidth="500"
         Name="root"
         Loaded="root_Loaded"
-        Title="PY" Height="550" Width="900"  >
+        Title="PY" Height="650" Width="900"  >
 
     <Window.DataContext>
         <navigators:Navigator x:Name="localNavigator"></navigators:Navigator>
