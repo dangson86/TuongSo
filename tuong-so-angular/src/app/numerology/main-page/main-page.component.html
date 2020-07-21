@@ -1,0 +1,11 @@
+<div class="main-container">
+    <div class="left-column">
+        <app-info-form (calculate)="onCalculate($event)"></app-info-form>
+        <div> &nbsp; </div>
+        <app-birth-grid [model]="birthGridModel"></app-birth-grid>
+        <app-pyramid-view [model]="pyramidViewModel"></app-pyramid-view>
+    </div>
+    <div class="right-column">
+        <app-year-list [model]="yearModels"></app-year-list>
+    </div>
+</div>

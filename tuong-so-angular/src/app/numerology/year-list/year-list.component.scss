@@ -1,0 +1,36 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+
+
+  tr {
+
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 4px;
+    }
+
+    th {
+      text-align: left;
+      background-color: lightcoral;
+      color: white;
+      font-weight: normal;
+    }
+
+    &:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    &:hover {
+      background-color: #ddd;
+    }
+
+    &.isMajor td {
+      background-color: lightcoral;
+      color: white;
+    }
+  }
+
+}

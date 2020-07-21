@@ -1,0 +1,72 @@
+<table>
+    <tr>
+        <td class="no-td"> </td>
+        <td> </td>
+        <td>
+            <div>
+                <span *ngIf="model?.y4" class="year">({{model?.y4}}) </span>
+                <br />
+                <span> {{model?.v4}}</span>
+            </div>
+        </td>
+        <td> </td>
+        <td class="no-td"> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td class="crossed-lr"> </td>
+        <td>
+            <div>
+                <span *ngIf="model?.y3" class="year">({{model?.y3}}) </span>
+                <br />
+                <span> {{model?.v3}}</span>
+            </div>
+        </td>
+        <td class="crossed-rl"> </td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td class="crossed-lr"> </td>
+        <td>
+            <div>
+                <span *ngIf="model?.y1" class="year">({{model?.y1}}) </span>
+                <br />
+                <span> {{model?.v1}}</span>
+            </div>
+        </td>
+        <td class="crossed-hz"> </td>
+        <td>
+            <div>
+                <span *ngIf="model?.y2" class="year">({{model?.y2}}) </span>
+                <br />
+                <span> {{model?.v2}}</span>
+            </div>
+        </td>
+        <td class="crossed-rl"> </td>
+    </tr>
+    <tr>
+        <td>
+            <div>
+                <span>(M)</span>
+                <br />
+                <span> {{model?.baseMonth}}</span>
+            </div>
+        </td>
+        <td class="crossed-lr"> </td>
+        <td>
+            <div>
+                <span>(D)</span>
+                <br />
+                <span> {{model?.baseDay}}</span>
+            </div>
+        </td>
+        <td class="crossed-rl"> </td>
+        <td>
+            <div>
+                <span>(Y)</span>
+                <br />
+                <span> {{model?.baseYear}}</span>
+            </div>
+        </td>
+    </tr>
+</table>

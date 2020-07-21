@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Age</th>
+        <th>Year</th>
+        <th>Sum</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of model" [class.isMajor]="item?.IsAMajorYear">
+        <td>{{item?.Age}}</td>
+        <td>{{item?.Year}}</td>
+        <td>{{item?.SumResult}}</td>
+        <td>{{item?.YearStatus}}</td>
+    </tr>
+</table>

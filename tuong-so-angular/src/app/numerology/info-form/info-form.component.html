@@ -1,0 +1,45 @@
+<form [formGroup]="formGroup" (ngSubmit)="onCalculate()">
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="FullName">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Nick Name</mat-label>
+                <input matInput formControlName="NickName">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Month</mat-label>
+                <input matInput formControlName="Month">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Day</mat-label>
+                <input matInput formControlName="Day">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="outline">
+                <mat-label>Year</mat-label>
+                <input matInput formControlName="Year">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button mat-stroked-button style="color: orangered;" class="submit-button">Calculate</button>
+        </div>
+    </div>
+</form>

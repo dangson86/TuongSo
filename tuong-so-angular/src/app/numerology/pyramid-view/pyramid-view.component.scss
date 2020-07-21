@@ -1,0 +1,61 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  tr {
+
+    td,
+    th {
+      border: 1px solid #ddd;
+      padding: 4px;
+
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+
+    th {
+      text-align: left;
+      background-color: lightcoral;
+      color: white;
+      font-weight: normal;
+    }
+
+    &:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      width: 20%;
+
+      div {
+        min-height: 38px;
+      }
+
+      text-align: center;
+
+      &.no-td {
+        border: none;
+        background: none;
+      }
+
+      &.crossed-lr {
+        background-image: linear-gradient(to bottom right, transparent calc(50% - 1px), black, transparent calc(50% + 1px));
+      }
+
+      &.crossed-rl {
+        background-image: linear-gradient(to bottom left, transparent calc(50% - 1px), black, transparent calc(50% + 1px));
+      }
+
+      &.crossed-hz {
+        background-image: linear-gradient(to bottom, transparent calc(50% - 1px), black, transparent calc(50% + 1px));
+      }
+    }
+  }
+
+
+}
+
+.year {
+  color: orangered;
+}
