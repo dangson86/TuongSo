@@ -89,6 +89,7 @@ export class NCalculatorService {
 
     return total;
   }
+
   FirtMajorYear(day: string, month: string, year: string): number {
     const scd = this.CalScd(day, month, year);
     let firstMajorYear = 0;

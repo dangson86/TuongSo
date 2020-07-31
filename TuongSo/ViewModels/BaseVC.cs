@@ -59,7 +59,6 @@ namespace TuongSo.ViewModels
             var value = 0;
             if (!string.IsNullOrEmpty(input))
             {
-                var inputNumer = int.Parse(input);
 
                 foreach (var c in input)
                 {

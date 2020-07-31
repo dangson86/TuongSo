@@ -1,13 +1,10 @@
-<table>
+<table *ngIf="show">
     <tr>
         <td class="no-td"> </td>
         <td> </td>
         <td>
-            <div>
-                <span *ngIf="model?.y4" class="year">({{model?.y4}}) </span>
-                <br />
-                <span> {{model?.v4}}</span>
-            </div>
+            <span class="year">{{majorYear4}}</span>
+
         </td>
         <td> </td>
         <td class="no-td"> </td>
@@ -16,31 +13,39 @@
         <td> </td>
         <td class="crossed-lr"> </td>
         <td>
-            <div>
-                <span *ngIf="model?.y3" class="year">({{model?.y3}}) </span>
-                <br />
-                <span> {{model?.v3}}</span>
-            </div>
+            <span>{{sumThirdLevel}}</span>
         </td>
         <td class="crossed-rl"> </td>
         <td> </td>
     </tr>
     <tr>
+        <td> </td>
         <td class="crossed-lr"> </td>
         <td>
-            <div>
-                <span *ngIf="model?.y1" class="year">({{model?.y1}}) </span>
-                <br />
-                <span> {{model?.v1}}</span>
-            </div>
+            <span class="year">{{majorYear3}}</span>
+        </td>
+        <td class="crossed-rl"> </td>
+        <td> </td>
+    </tr>
+
+    <tr>
+        <td class="no-td"> </td>
+        <td class="year">{{majorYear1}}</td>
+        <td>
+            <span>{{sumSecondLevel}}</span>
+        </td>
+        <td class="year">{{majorYear2}}</td>
+        <td class="no-td"> </td>
+    </tr>
+
+    <tr>
+        <td class="crossed-lr"> </td>
+        <td>
+            <span>{{sumMonthDay}} </span>
         </td>
         <td class="crossed-hz"> </td>
         <td>
-            <div>
-                <span *ngIf="model?.y2" class="year">({{model?.y2}}) </span>
-                <br />
-                <span> {{model?.v2}}</span>
-            </div>
+            <span>{{sumDayYear}}</span>
         </td>
         <td class="crossed-rl"> </td>
     </tr>
@@ -49,7 +54,7 @@
             <div>
                 <span>(M)</span>
                 <br />
-                <span> {{model?.baseMonth}}</span>
+                <span> {{baseMonth}}</span>
             </div>
         </td>
         <td class="crossed-lr"> </td>
@@ -57,7 +62,7 @@
             <div>
                 <span>(D)</span>
                 <br />
-                <span> {{model?.baseDay}}</span>
+                <span> {{baseDay}}</span>
             </div>
         </td>
         <td class="crossed-rl"> </td>
@@ -65,7 +70,7 @@
             <div>
                 <span>(Y)</span>
                 <br />
-                <span> {{model?.baseYear}}</span>
+                <span> {{baseYear}}</span>
             </div>
         </td>
     </tr>
