@@ -54,7 +54,7 @@ export class YearListComponent implements OnInit {
           {
             Age: (i).toString(),
             Year: yearString,
-            SumResult: scd.toString(),
+            SumResult: this.calService.ScdToString(scd),
             YearStatus: this.calService.GetYearStatus(tempSum),
             IsAMajorYear: i === firstMajorYear || i === secondMajorYear || i === thirdMajorYear || i === forthMajorYear,
           });

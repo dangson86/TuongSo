@@ -39,6 +39,9 @@ export class InfoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // setTimeout(() => {
+    //   this.calculate.emit(this.formGroup.value);
+    // }, 1000);
   }
 
   onCalculate(): void {

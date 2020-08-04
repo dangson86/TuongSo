@@ -70,24 +70,29 @@ export class NCalculatorService {
           value += inputNumer;
         }
       });
-
     }
-
     return value;
   }
   CalScd(day: string, month: string, year: string): number {
-    const acceptNumbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 22];
+    return this.calScdRecur(day + month + year);
+  }
 
-    const daySum = this.SumStringValue(day);
-    const monthSum = this.SumStringValue(month);
-    const yearSum = this.SumStringValue(year);
-    let total = daySum + monthSum + yearSum;
-
-    if (acceptNumbers.indexOf(total) < 0) {
-      total = this.SumStringValue(total.toString());
+  ScdToString(scd: number): string {
+    if (scd === 22) {
+      return '22 = 4';
+    } else {
+      return scd.toString();
     }
+  }
 
-    return total;
+  private calScdRecur(stringNumber: string): number {
+    const acceptNumbers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 22];
+    const maxAllowNumber = 11;
+    let sum = this.SumStringValue(stringNumber);
+    if (acceptNumbers.indexOf(sum) < 0 && sum > maxAllowNumber) {
+      sum = this.calScdRecur(sum.toString());
+    }
+    return sum;
   }
 
   FirtMajorYear(day: string, month: string, year: string): number {
