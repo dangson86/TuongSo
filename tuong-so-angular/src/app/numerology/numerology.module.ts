@@ -9,6 +9,7 @@ import { InfoFormComponent } from './info-form/info-form.component';
 import { BirthGridComponent } from './birth-grid/birth-grid.component';
 import { PyramidViewComponent } from './pyramid-view/pyramid-view.component';
 import { YearListComponent } from './year-list/year-list.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { YearListComponent } from './year-list/year-list.component';
     CommonModule,
 
     ReactiveFormsModule,
-
+    MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,

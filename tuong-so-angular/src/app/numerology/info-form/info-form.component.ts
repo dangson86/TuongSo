@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-info-form',
@@ -7,13 +7,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./info-form.component.scss']
 })
 export class InfoFormComponent implements OnInit {
+  readonly months = [];
+  readonly days = [];
   @Output() calculate = new EventEmitter();
+
 
   formGroup: FormGroup;
 
-  constructor(
-    public fb: FormBuilder,
-  ) {
+  constructor(public fb: FormBuilder) {
+
+    for (let i = 0; i < 12; i++) {
+      this.months.push(`${i + 1}`);
+    }
+    for (let i = 0; i < 31; i++) {
+      this.days.push(`${i + 1}`);
+    }
+
     this.formGroup = this.fb.group({
       FullName: ['', Validators.required],
       NickName: [''],
@@ -47,6 +56,11 @@ export class InfoFormComponent implements OnInit {
   onCalculate(): void {
     if (!this.formGroup.valid) {
       this.calculate.emit(null);
+      Object.keys(this.formGroup.controls).forEach(key => {
+        const controlErrors: ValidationErrors = this.formGroup.get(key).errors;
+        console.log(key, controlErrors);
+      });
+      alert(`Invalid form`);
     } else {
       this.calculate.emit(this.formGroup.value);
     }
