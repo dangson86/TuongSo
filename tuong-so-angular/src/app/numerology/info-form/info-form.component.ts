@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -58,6 +58,7 @@ export class InfoFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.queryParams.pipe(
+      takeUntil(this.isDestroyed)
     ).subscribe(e => {
       if (e?.FullName && e?.Month) {
         this.formGroup.setValue(e);
