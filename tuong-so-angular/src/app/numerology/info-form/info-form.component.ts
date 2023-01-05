@@ -1,20 +1,24 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+
 
 @Component({
   selector: 'app-info-form',
   templateUrl: './info-form.component.html',
   styleUrls: ['./info-form.component.scss']
 })
-export class InfoFormComponent implements OnInit {
+export class InfoFormComponent implements OnInit, OnDestroy {
   readonly months = [];
   readonly days = [];
   @Output() calculate = new EventEmitter();
 
+  readonly isDestroyed = new Subject<void>()
 
   formGroup: FormGroup;
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder, private router: Router, private route: ActivatedRoute) {
 
     for (let i = 0; i < 12; i++) {
       this.months.push(`${i + 1}`);
@@ -47,10 +51,18 @@ export class InfoFormComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.isDestroyed.next();
+    this.isDestroyed.complete();
+  }
+
   ngOnInit(): void {
-    // setTimeout(() => {
-    //   this.calculate.emit(this.formGroup.value);
-    // }, 1000);
+    this.route.queryParams.pipe(
+    ).subscribe(e => {
+      if (e?.FullName && e?.Month) {
+        this.formGroup.setValue(e);
+      }
+    });
   }
 
   onCalculate(): void {
@@ -64,5 +76,18 @@ export class InfoFormComponent implements OnInit {
     } else {
       this.calculate.emit(this.formGroup.value);
     }
+  }
+  saveInfo() {
+    if (this.formGroup.valid) {
+      let currentClientsString = localStorage.getItem("clients")
+      let currentClients: any[] = currentClientsString == null ? [] : JSON.parse(currentClientsString);
+      currentClients.push(this.formGroup.value);
+      localStorage.setItem("clients", JSON.stringify(currentClients));
+      alert("Saved");
+    }
+  }
+
+  loadInfo() {
+    this.router.navigate(["clients"]);
   }
 }

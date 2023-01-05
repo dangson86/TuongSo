@@ -1,7 +1,7 @@
 <form [formGroup]="formGroup" (ngSubmit)="onCalculate()">
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field class="input" appearance="outline">
                 <mat-label>Full Name</mat-label>
                 <input matInput formControlName="FullName">
             </mat-form-field>
@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field class="input" appearance="outline">
                 <mat-label>Nick Name</mat-label>
                 <input matInput formControlName="NickName">
             </mat-form-field>
@@ -18,7 +18,7 @@
 
     <div class="row">
         <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field class="dateInput" appearance="outline">
                 <mat-label>Month</mat-label>
                 <mat-select formControlName="Month">
                     <mat-option *ngFor="let month of months" [value]="month">
@@ -28,7 +28,7 @@
             </mat-form-field>
         </div>
         <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field class="dateInput" appearance="outline">
                 <mat-label>Day</mat-label>
                 <mat-select formControlName="Day">
                     <mat-option *ngFor="let day of days" [value]="day">
@@ -38,7 +38,7 @@
             </mat-form-field>
         </div>
         <div class="col">
-            <mat-form-field appearance="outline">
+            <mat-form-field class="dateInput" appearance="outline">
                 <mat-label>Year</mat-label>
                 <input matInput formControlName="Year">
             </mat-form-field>
@@ -50,4 +50,13 @@
             <button mat-stroked-button style="color: orangered;" class="submit-button">Calculate</button>
         </div>
     </div>
+
 </form>
+<div class="row">
+    <div class="col">
+        <button type="button" mat-stroked-button style="width: 100%;" (click)="saveInfo()">Save</button>
+    </div>
+    <div class="col">
+        <button type="button" mat-stroked-button style="width: 100%;" (click)="loadInfo()">Load</button>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+    <button mat-raised-button color="accent" (click)="goBack()">Back</button>
+
+    <table class="table" style="margin-top: 10px;">
+        <tr *ngFor="let client of currentClients; let i = index">
+            <td> {{client.FullName}} {{client.Month}}/{{client.Day}}/{{client.Year}}</td>
+            <td>
+                <button mat-stroked-button color="primary" (click)="selectClient(client, i)">Select</button>
+                <button mat-stroked-button color="warn" (click)="deleteClient(client, i)">Delete</button>
+
+            </td>
+        </tr>
+    </table>
+</div>
