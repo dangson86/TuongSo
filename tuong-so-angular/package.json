@@ -9,8 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-github": "ng build --configuration production --baseHref=/Numerology/",
-    "build-demo": "ng build --configuration production --baseHref=/TuongSo/ --outputPath=../docs/"
+    "build-github": "ng build --configuration production --base-href=/Numerology/",
+    "build-demo": "ng build --configuration production --base-href=/TuongSo/ --output-path=../docs/ --delete-output-path"
   },
   "private": true,
   "dependencies": {
