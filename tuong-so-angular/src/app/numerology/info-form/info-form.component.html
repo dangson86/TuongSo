@@ -46,14 +46,10 @@
     </div>
     <div class="row">
         <div class="col">
-            <!-- <mat-form-field appearance="outline">
-                <mat-label>Constellation</mat-label>
-                <input matInput formControlName="constellation">
-            </mat-form-field> -->
-            <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-form-field appearance="outline" style="width: 100%;">
                 <mat-label>Contellations</mat-label>
                 <mat-select formControlName="constellation">
-                    <mat-option></mat-option>
+                    <mat-option>None</mat-option>
                     <mat-option *ngFor="let item of contellations" [value]="item.name"> {{item.name}} {{item.fromDate}}-{{item.toDate}}</mat-option>
                 </mat-select>
             </mat-form-field>
@@ -70,14 +66,14 @@
 
     <div class="row">
         <div class="col">
-            <button mat-stroked-button style="color: orangered;" class="submit-button">Calculate</button>
+            <button mat-stroked-button color="primary" class="submit-button">Calculate</button>
         </div>
     </div>
 
 </form>
 <div class="row">
     <div class="col">
-        <button type="button" mat-stroked-button style="width: 100%;" (click)="saveInfo()">Save</button>
+        <button type="button" mat-stroked-button color="accent" style="width: 100%;" (click)="saveInfo()">Save</button>
     </div>
     <div class="col">
         <button type="button" mat-stroked-button style="width: 100%;" (click)="loadInfo()">Load</button>
