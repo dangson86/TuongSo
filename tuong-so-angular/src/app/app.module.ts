@@ -13,9 +13,6 @@ import { NumerologyModule } from './numerology/numerology.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
-
-
     NumerologyModule,
   ],
   providers: [],

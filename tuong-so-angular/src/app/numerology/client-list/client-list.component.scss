@@ -1,0 +1,14 @@
+.info-div{
+    position: relative;
+    .displayValue{
+        font-size: 1em;
+        color: var(--bs-dark);
+    }
+    .createdOn{
+        position: absolute;
+        color: var(--bs-gray);
+        left: 19px;
+        font-size: 0.6em;
+        bottom: -10px;
+    }
+}

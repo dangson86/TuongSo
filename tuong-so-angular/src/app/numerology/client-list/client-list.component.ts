@@ -15,7 +15,11 @@ export class ClientListComponent implements OnInit {
 
   ngOnInit(): void {
     let currentClientsString = localStorage.getItem("clients")
-    this.currentClients = currentClientsString == null ? [] : JSON.parse(currentClientsString);
+    let temp: any[] = currentClientsString == null ? [] : JSON.parse(currentClientsString);
+    temp.sort((a, b) => {
+      return a.FullName.localeCompare(b.FullName);
+    });
+    this.currentClients = temp;
   }
 
   goBack() {
